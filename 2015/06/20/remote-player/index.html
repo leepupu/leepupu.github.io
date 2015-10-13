@@ -31,14 +31,12 @@
 
 
 
-  <title> Dream Afar </title>
+  <title> remote-player // Dream Afar </title>
 </head>
 
 <body>
 <!--[if lte IE 8]> <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'> <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari." style='margin-left:auto;margin-right:auto;display: block;'/></a></div> <![endif]-->
-  <div class="container one-column 
-   page-home 
-">
+  <div class="container one-column page-post-detail">
     <div class="headband"></div>
 
     <div id="header" class="header">
@@ -100,9 +98,9 @@
       <div class="main-inner">
         <div id="content" class="content">
           
+
   <div id="posts" class="posts-expand">
     
-      
 
   <div class="post post-type-normal ">
     <div class="post-header">
@@ -113,76 +111,7 @@
           
           
             
-              <a class="post-title-link" href="/2015/10/13/move/">
-                move
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2015-10-13
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/10/13/move/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/13/move/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h1 id="搬家啦">搬家啦</h1><p>懶的 commit, push, 直接改用 Logdown 管理</p>
-<p><a href="http://leepupu-blog.logdown.com/" target="_blank" rel="external">Blog</a></p>
-
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/06/20/remote-player/">
-                remote-player
-              </a>
+              remote-player
             
           
         </h1>
@@ -233,12 +162,10 @@
       
 
       
-        
-          <h1 id="項目起源">項目起源</h1><p>宿舍、家中，常常會有大家一起聽歌的情景，但如果大家都想當ＤＪ選歌呢？</p>
+        <h1 id="項目起源">項目起源</h1><p>宿舍、家中，常常會有大家一起聽歌的情景，但如果大家都想當ＤＪ選歌呢？</p>
 <p>有需求就開始動手做囉</p>
 <p>目標是做一個大家可以點歌 由一台 server 播歌的平台</p>
 
-        
       
     </div>
 
@@ -246,430 +173,39 @@
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
             
-              <a class="post-title-link" href="/2015/06/08/OS-note/">
-                OS-note
-              </a>
+              <a href="/2015/10/13/move/">move</a>
             
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2015-06-08
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/06/08/OS-note/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/06/08/OS-note/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h1 id="CH9">CH9</h1><h2 id="Virtual_Memory">Virtual Memory</h2><p>前一章提到的 paging 是技術，而這章提的是 paging 的使用方法。</p>
-<p>Virtual Memory 就是使用到了 paging。</p>
-<ul>
-<li>Progeam Size can grater than Phy Mem Size</li>
-<li>Memory Utilization Up</li>
-<li>CPU Utilization Up (since no need to load all program to mem)</li>
-<li>Decrease I/O Transfer time</li>
-</ul>
-<h3 id="Demand_Paging">Demand Paging</h3><p>要的時侯再 load</p>
-<hr>
-<p>Locical Addr =&gt; Page Table query(invalid bit) =&gt; Page Fault =&gt; Fetch Lost Page in Disk to Mem Frame</p>
-<p>Effective Memory Access Time:<br>(1-p)<em>ma + p</em>(Page Fault Process Time)</p>
-<ul>
-<li>p: Page Fault Ratio</li>
-</ul>
-<h3 id="Page_Replacement">Page Replacement</h3><p>Mem 換到 Disk</p>
-<p>Page Replacement Algo:</p>
-<ul>
-<li>FIFO<br>先進先出</li>
-<li>OPT<br>理想</li>
-<li>LRU<br>No Belady<br>需要硬體支援<ul>
-<li>Counter</li>
-<li>Stack</li>
-</ul>
-</li>
-<li>LRU 近似<br>退化成 FIFO, Belady<ul>
-<li>Second Chance<br>  With Reference Bit<br>  Clock pointer, clear bit until found 0</li>
-<li>Enhance Second Chance<br>  Add Modify bit<br>  二進位數最小</li>
-</ul>
-</li>
-<li>MFU/LFU<br>計算 ref 次數<br>MFU: 最多的為 Victim<br>LFU: 反之</li>
-</ul>
-<h4 id="Belady_現象">Belady 現象</h4><p>more frame, more P.F. ratio</p>
-<h3 id="分配頁框數議題">分配頁框數議題</h3><h4 id="最少">最少</h4><p>取決於 Instruction Access Memory Count</p>
-<table>
-<thead>
-<tr>
-<th>IF</th>
-<th>DE</th>
-<th>FO</th>
-<th>EX</th>
-<th>WM</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Must</td>
-<td></td>
-<td>Maybe</td>
-<td></td>
-<td>Maybe</td>
-</tr>
-</tbody>
-</table>
-<h4 id="Thrashing_震盪">Thrashing 震盪</h4><p>解決方法：</p>
-<ul>
-<li>加入 P.F. Ratio 上下界</li>
-<li>降低 Multiprogramming Degree</li>
-<li>Working Set Model<br>依照 WSS 分配 Process 足夠的 frames<br>若不夠 (Sum(WSSi) &gt; Phy Mem) 則暫停某些 Process</li>
-</ul>
-<h3 id="Page_Size_議題">Page Size 議題</h3><p>Page Size ↓</p>
-<ul>
-<li>Page Fault Ratio ↑</li>
-<li>Page Table Size ↑</li>
-<li>Whole Process I/O time ↑</li>
-</ul>
-<hr>
-<ul>
-<li>Internal Fragmentation ↓</li>
-<li>Single Page I/O time ↓</li>
-<li>Locality 愈集中</li>
-</ul>
-<hr>
-<h1 id="CH10">CH10</h1><h2 id="管理_Free_Space">管理 Free Space</h2><h3 id="Bit_Vector">Bit Vector</h3><p>空 0<br>使用 1<br>EX: 0011001011000001<br>佔用 memory</p>
-<h3 id="Link_List">Link List</h3><p>效率不佳</p>
-<h3 id="Combination">Combination</h3><p>使用可用區塊記錄其他可用區塊編號<br>效率不佳</p>
-<h4 id="Counting">Counting</h4><p>使用可用區塊記錄其後可用連續區塊數<br>link list 在一起</p>
-<h2 id="Data_Access_Time">Data Access Time</h2><p>= Seek Time + Latency(Rotation 轉到磁頭) Time + Transfer Time<br>Seek Time 最久 因為是機械動作</p>
-<h3 id="Disk_Scheduling_Algo">Disk Scheduling Algo</h3><h4 id="FCFS_(First_Come,_First_Serve)">FCFS (First Come, First Serve)</h4><ul>
-<li>Simple</li>
-<li>No Starvaion</li>
-<li>效果不佳</li>
-</ul>
-<h4 id="SSTF_(short-seek_time_first)">SSTF (short-seek time first)</h4><ul>
-<li>Greedy 並非最佳</li>
-<li>可能 Starvaion</li>
-</ul>
-<h4 id="SCAN_雙向掃來掃去">SCAN 雙向掃來掃去</h4><ul>
-<li>不必要的移動</li>
-<li>No Starvaion</li>
-</ul>
-<h4 id="C-SCAN_單向掃">C-SCAN 單向掃</h4><h4 id="LOOK_雙向掃_遇到尾端請求折返">LOOK 雙向掃 遇到尾端請求折返</h4><h4 id="C-LOOK_單向掃_遇到尾端請求折返">C-LOOK 單向掃 遇到尾端請求折返</h4><hr>
-<h3 id="Allocation_Method">Allocation Method</h3><h4 id="Contiguous_Allocation">Contiguous Allocation</h4><ul>
-<li>分配連續空間</li>
-<li>檔案大小無法變動</li>
-<li>External Fragmentation Problem</li>
-</ul>
-<h4 id="Link_Allocation">Link Allocation</h4><ul>
-<li>list 存 block</li>
-<li>不支援 random access</li>
-<li>Seek Time Long</li>
-<li>Reliability 差</li>
-</ul>
-<h4 id="FAT_(File_Allocation_Table)">FAT (File Allocation Table)</h4><ul>
-<li>用 Table 存 link list 資料</li>
-<li>EOF</li>
-</ul>
-<h4 id="Index_Allocation">Index Allocation</h4><ul>
-<li>檔案開頭放 Index Table 存每個 block index</li>
-<li>No External Fragmentation Problem</li>
-<li>File 大小可變</li>
-<li>無須先宣告檔案大小</li>
-<li>Random/Sequential Access</li>
-</ul>
-<ol>
-<li>Index Block 可以自成 Link list</li>
-<li>Multilevel Index</li>
-<li>Unix 的 i-Node Structure. 有 15 pointers, 1~12 data block, 13 single level index, 14 two-level index, 15 three level index</li>
-</ol>
-<h3 id="RAID">RAID</h3><h4 id="RAID_0">RAID 0</h4><p>Striping RAID<br>效能導向 平行讀寫 炸一顆全炸</p>
-<h4 id="RAID_1">RAID 1</h4><p>Mirror RAID<br>平行寫入 可靠性佳</p>
-<h4 id="RAID_0+1">RAID 0+1</h4><p>RAID 0+1<br>至少四顆<br>先 Striping 再 Mirror<br>成本高</p>
-<h4 id="RAID_1+0">RAID 1+0</h4><p>先 Mirror =&gt; Striping</p>
-<h4 id="RAID_2">RAID 2</h4><p><a href="http://zh.wikipedia.org/wiki/%E6%B1%89%E6%98%8E%E7%A0%81" target="_blank" rel="external">Hamming Code</a> 編碼 拆成位元單位<br>4 bits 7 部硬碟</p>
-<h4 id="RAID_3">RAID 3</h4><ul>
-<li>parallel with parity</li>
-<li>bitwise</li>
-</ul>
-<h4 id="RAID_4">RAID 4</h4><ul>
-<li>Like 3, block wise</li>
-</ul>
-<h4 id="RAID_5">RAID 5</h4><ul>
-<li>Like 4, block 切 bitwise 存</li>
-</ul>
-<h4 id="RAID_6">RAID 6</h4><ul>
-<li>Double Parity</li>
-<li>壞兩顆也能修復</li>
-</ul>
-
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/05/23/COC-Proxy/">
-                COC-Proxy
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2015-05-23
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; 分類於
-            
-              <a href="/categories/個人項目/">個人項目</a>
-
-              
-              
-                ， 
-              
-
-            
-              <a href="/categories/個人項目/遊戲相關/">遊戲相關</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/05/23/COC-Proxy/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/05/23/COC-Proxy/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h1 id="項目起源">項目起源</h1><p>回鍋 COC 有好一陣子了，在 PaD 的坑結束後過一陣子乏力期，一打開 IDA 就全身酸軟。</p>
-<p>五月初又是一陣期中報告，實習面試，雖然一直有想要拆開它的慾望，卻一直抽不出身</p>
-<p>就在考多益的前一週突然渾身不對勁的跳坑開始著手研究</p>
-<hr>
-<h1 id="研究過程">研究過程</h1><h2 id="準備">準備</h2><p>COC 和 Pad 不同，是走 raw socket, 這様窺探資料的難度增加了 (這年頭沒有明文傳輸了吧)</p>
-<p>所以也不需要 wireshark，先用 apktool 解開 apk</p>
-<p>翻了翻 smali 果然重點都不在 java 層, 將唯一的 lib <em>libg.so</em> 丟到 IDA。一看太好了，沒有加殼！</p>
-<p>開 strings subview 找到伺服器和 port</p>
-<p>使用 python 開 tcp socket proxy 準備中間人解密資料</p>
-<p>要讓 app 改連 proxy 首先想到 /etc/hosts 但改了沒有用而且不通用(需要 root)，後來是看到有現成的 <a href="https://github.com/Crypt0s/FakeDns">fakedns</a>，接著只要手動設定 wifi dns 地址即可。</p>
-<p>之前弄的逆向相關項目幾乎都是用 C 實作，這次來玩玩看聽說處理底層資料也游刃有餘的 python 2</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/05/23/COC-Proxy/#more">
-              閱讀全文 &raquo;
-            </a>
           </div>
-        
-      
-    </div>
 
-    <div class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/COC/"> #COC </a>
-          
-            <a href="/tags/android/"> #android </a>
-          
-            <a href="/tags/reverse-engineering/"> #reverse engineering </a>
-          
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/06/08/OS-note/">OS-note</a>
+            
+          </div>
         </div>
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </div>
   </div>
 
 
+
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/05/22/hello-world/">
-                Hello World
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2015-05-22
-        </span>
-
+      <div class="comments" id="comments">
         
-          <span class="post-category">
-            &nbsp; | &nbsp; 分類於
-            
-              <a href="/categories/網頁/">網頁</a>
-
-              
-              
-                ， 
-              
-
-            
-              <a href="/categories/網頁/本站/">本站</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/05/22/hello-world/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/05/22/hello-world/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h2 id="Hexo!">Hexo!</h2><p><blockquote class="blockquote-center">Hello World</blockquote><br><a href="http://hexo.io/">Hexo</a> 初體驗</p>
-<p>這陣子一直想開個 Blog, 之前 Google Blog 荒廢很~~ 久了，同時來使用一下 Github Page</p>
-<p>主要是想要紀錄一些什麼，不知道這一次可以維持多久呢</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/05/22/hello-world/#more">
-              閱讀全文 &raquo;
-            </a>
+          <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
           </div>
         
-      
-    </div>
-
-    <div class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/hexo/"> #hexo </a>
-          
-            <a href="/tags/site/"> #site </a>
-          
-        </div>
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
+      </div>
     
   </div>
 
-  
 
         </div>
 
@@ -690,6 +226,15 @@
   <div id="sidebar" class="sidebar">
     <div class="sidebar-inner">
 
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
       
 
       <div class="site-overview">
@@ -739,6 +284,17 @@
 
       </div>
 
+      
+        <div class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#項目起源"><span class="nav-number">1.</span> <span class="nav-text">項目起源</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </div>
       
 
     </div>
@@ -976,6 +532,325 @@
 
 
   
+  
+<script type="text/javascript" id="bootstrap.scrollspy.custom">
+  /* ========================================================================
+  * Bootstrap: scrollspy.js v3.3.2
+  * http://getbootstrap.com/javascript/#scrollspy
+  * ========================================================================
+  * Copyright 2011-2015 Twitter, Inc.
+  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+  * ======================================================================== */
+
+  /**
+   * Custom by iissnan
+   *
+   * - Add a `clear.bs.scrollspy` event.
+   * - Esacpe targets selector.
+   */
+
+
+  +function ($) {
+    'use strict';
+
+    // SCROLLSPY CLASS DEFINITION
+    // ==========================
+
+    function ScrollSpy(element, options) {
+      this.$body          = $(document.body)
+      this.$scrollElement = $(element).is(document.body) ? $(window) : $(element)
+      this.options        = $.extend({}, ScrollSpy.DEFAULTS, options)
+      this.selector       = (this.options.target || '') + ' .nav li > a'
+      this.offsets        = []
+      this.targets        = []
+      this.activeTarget   = null
+      this.scrollHeight   = 0
+
+      this.$scrollElement.on('scroll.bs.scrollspy', $.proxy(this.process, this))
+      this.refresh()
+      this.process()
+    }
+
+    ScrollSpy.VERSION  = '3.3.2'
+
+    ScrollSpy.DEFAULTS = {
+      offset: 10
+    }
+
+    ScrollSpy.prototype.getScrollHeight = function () {
+      return this.$scrollElement[0].scrollHeight || Math.max(this.$body[0].scrollHeight, document.documentElement.scrollHeight)
+    }
+
+    ScrollSpy.prototype.refresh = function () {
+      var that          = this
+      var offsetMethod  = 'offset'
+      var offsetBase    = 0
+
+      this.offsets      = []
+      this.targets      = []
+      this.scrollHeight = this.getScrollHeight()
+
+      if (!$.isWindow(this.$scrollElement[0])) {
+        offsetMethod = 'position'
+        offsetBase   = this.$scrollElement.scrollTop()
+      }
+
+      this.$body
+        .find(this.selector)
+        .map(function () {
+          var $el   = $(this)
+          var href  = $el.data('target') || $el.attr('href')
+          var $href = /^#./.test(href) && $(escapeSelector(href)) // Need to escape selector.
+
+          return ($href
+            && $href.length
+            && $href.is(':visible')
+            && [[$href[offsetMethod]().top + offsetBase, href]]) || null
+        })
+        .sort(function (a, b) { return a[0] - b[0] })
+        .each(function () {
+          that.offsets.push(this[0])
+          that.targets.push(this[1])
+        })
+
+
+    }
+
+    ScrollSpy.prototype.process = function () {
+      var scrollTop    = this.$scrollElement.scrollTop() + this.options.offset
+      var scrollHeight = this.getScrollHeight()
+      var maxScroll    = this.options.offset + scrollHeight - this.$scrollElement.height()
+      var offsets      = this.offsets
+      var targets      = this.targets
+      var activeTarget = this.activeTarget
+      var i
+
+      if (this.scrollHeight != scrollHeight) {
+        this.refresh()
+      }
+
+      if (scrollTop >= maxScroll) {
+        return activeTarget != (i = targets[targets.length - 1]) && this.activate(i)
+      }
+
+      if (activeTarget && scrollTop < offsets[0]) {
+        $(this.selector).trigger('clear.bs.scrollspy')  // Add a custom event.
+        this.activeTarget = null
+        return this.clear()
+      }
+
+      for (i = offsets.length; i--;) {
+        activeTarget != targets[i]
+          && scrollTop >= offsets[i]
+          && (!offsets[i + 1] || scrollTop <= offsets[i + 1])
+          && this.activate(targets[i])
+      }
+    }
+
+    ScrollSpy.prototype.activate = function (target) {
+      this.activeTarget = target
+
+      this.clear()
+
+      var selector = this.selector +
+        '[data-target="' + target + '"],' +
+        this.selector + '[href="' + target + '"]'
+
+      var active = $(selector)
+        .parents('li')
+        .addClass('active')
+
+      if (active.parent('.dropdown-menu').length) {
+        active = active
+          .closest('li.dropdown')
+          .addClass('active')
+      }
+
+      active.trigger('activate.bs.scrollspy')
+    }
+
+    ScrollSpy.prototype.clear = function () {
+      $(this.selector)
+        .parentsUntil(this.options.target, '.active')
+        .removeClass('active')
+    }
+
+
+    // SCROLLSPY PLUGIN DEFINITION
+    // ===========================
+
+    function Plugin(option) {
+      return this.each(function () {
+        var $this   = $(this)
+        var data    = $this.data('bs.scrollspy')
+        var options = typeof option == 'object' && option
+
+        if (!data) $this.data('bs.scrollspy', (data = new ScrollSpy(this, options)))
+        if (typeof option == 'string') data[option]()
+      })
+    }
+
+    var old = $.fn.scrollspy
+
+    $.fn.scrollspy             = Plugin
+    $.fn.scrollspy.Constructor = ScrollSpy
+
+
+    // SCROLLSPY NO CONFLICT
+    // =====================
+
+    $.fn.scrollspy.noConflict = function () {
+      $.fn.scrollspy = old
+      return this
+    }
+
+
+    // SCROLLSPY DATA-API
+    // ==================
+
+    $(window).on('load.bs.scrollspy.data-api', function () {
+      $('[data-spy="scroll"]').each(function () {
+        var $spy = $(this)
+        Plugin.call($spy, $spy.data())
+      })
+    })
+
+  }(jQuery);
+</script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var $sidebarInner = $('.sidebar-inner');
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.didShow', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+          var self = this;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      $(indicator).velocity('stop').velocity({
+        opacity: action === 'show' ? 0.4 : 0
+      }, { duration: 100 });
+    }
+
+  });
+</script>
+
+
+  <script type="text/javascript" id="sidebar.nav">
+    $(document).ready(function () {
+      var html = $('html');
+
+      $('.sidebar-nav li').on('click', function () {
+        var item = $(this);
+        var activeTabClassName = 'sidebar-nav-active';
+        var activePanelClassName = 'sidebar-panel-active';
+        if (item.hasClass(activeTabClassName)) {
+          return;
+        }
+
+        var currentTarget = $('.' + activePanelClassName);
+        var target = $('.' + item.data('target'));
+
+        currentTarget.velocity('transition.slideUpOut', 200, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', 200)
+            .addClass(activePanelClassName);
+        });
+
+        item.siblings().removeClass(activeTabClassName);
+        item.addClass(activeTabClassName);
+      });
+
+      $('.post-toc a').on('click', function (e) {
+        e.preventDefault();
+        var offset = $(escapeSelector(this.getAttribute('href'))).offset().top;
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        });
+      });
+
+      // Expand sidebar on post detail page by default, when post has a toc.
+      if (isDesktop() && HEXO_SIDEBAR_CONFIGURATION === 'post') {
+        displaySidebar();
+      }
+    });
+  </script>
+
+
+
 
   <script type="text/javascript">
     var HEXO_SIDEBAR_CONFIGURATION = 'post';
@@ -1000,15 +875,15 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'leepupu';
-      var disqus_identifier = 'index.html';
-      var disqus_title = '';
-      var disqus_url = '';
+      var disqus_identifier = '2015/06/20/remote-player/';
+      var disqus_title = 'remote-player';
+      var disqus_url = 'http://leepupu.github.io/2015/06/20/remote-player/';
 
       (function(){
         var dsq = document.createElement('script');
         dsq.type = 'text/javascript';
         dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
       }());
     </script>
