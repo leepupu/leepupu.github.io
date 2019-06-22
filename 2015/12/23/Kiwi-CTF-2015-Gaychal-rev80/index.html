@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Kiwi CTF 2015 - Gaychal [rev80] | Work</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="題目 I found some suspicious PHP code on my website. The code was attached to my theme’s footer file. It’s either the DRM of the theme, or a virus; however it’s encoded and I can’t figure it out. Do tha">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kiwi CTF 2015 - Gaychal [rev80]">
+<meta property="og:url" content="http://yoursite.com/2015/12/23/Kiwi-CTF-2015-Gaychal-rev80/index.html">
+<meta property="og:site_name" content="Work">
+<meta property="og:description" content="題目 I found some suspicious PHP code on my website. The code was attached to my theme’s footer file. It’s either the DRM of the theme, or a virus; however it’s encoded and I can’t figure it out. Do tha">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2019-06-22T02:12:31.940Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kiwi CTF 2015 - Gaychal [rev80]">
+<meta name="twitter:description" content="題目 I found some suspicious PHP code on my website. The code was attached to my theme’s footer file. It’s either the DRM of the theme, or a virus; however it’s encoded and I can’t figure it out. Do tha">
+  
+    <link rel="alternate" href="/atom.xml" title="Work" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Work</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Kiwi-CTF-2015-Gaychal-rev80" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/12/23/Kiwi-CTF-2015-Gaychal-rev80/" class="article-date">
+  <time datetime="2015-12-23T11:37:31.000Z" itemprop="datePublished">2015-12-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Kiwi CTF 2015 - Gaychal [rev80]
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="題目"><a href="#題目" class="headerlink" title="題目"></a>題目</h2><blockquote>
+<p>I found some suspicious PHP code on my website. The code was attached to my theme’s footer file.</p>
+<p>It’s either the DRM of the theme, or a virus; however it’s encoded and I can’t figure it out. Do that for me please :)</p>
+<p><a href="https://raw.githubusercontent.com/ctfs/write-ups-2015/master/hack-dat-kiwi-ctf-2015/reversing/gaychal/gaychal.txt" target="_blank" rel="noopener">Download</a></p>
+</blockquote>
+<p>一支肥大的 php code</p>
+<p>還蠻現實的題目，webshell or backdoor 都會 encode/encrypt 一下，混淆視聽</p>
+<h2 id="過程"><a href="#過程" class="headerlink" title="過程"></a>過程</h2><p>目標是還原原始的 php script ，是以 eval 被跑起來的，那就一層層的剝開吧、</p>
+<p>方法是把 eval 拿掉，印出真正的 code, 但解開第一層後發現裡面是另外一組 eval，想必再更內層也會是這様的模式，不可能手工折。</p>
+<p>於是就將計就計，用 php 寫段 script 把每一層的 eval 都拿掉</p>
+<figure class="figure-code code"><div class="highlight"><pre>$a = '.....';
+while(strpos($a, 'eval') !== false){
+    $a = str_replace("eval", '$a=', $a);
+    eval($a);
+    echo strlen($a).PHP_EOL;
+}
+eval($a);
+</pre></div>
+</figure>
+
+<p>跑到最內層會看到印出</p>
+<figure class="figure-code code"><div class="highlight"><pre>the flag is a8cc6eb651a10688e12779b1558193f8
+</pre></div>
+</figure>
+
+<p>直接送 incorrect, 這是最後一個 eval 出來的結果，印出這行的 code 想必有東西</p>
+<p>把最後的 $a 印出是</p>
+<figure class="figure-code code"><div class="highlight"><pre>echo "the flag is ".md5("5+5=9&lt;-- fix this"),PHP_EOL;
+</pre></div>
+</figure>
+
+<p>fix 一下就跑出 flag 了 </p>
+<figure class="figure-code code"><div class="highlight"><pre>php -r 'echo "the flag is ".md5("5+5=10&lt;-- fix this"),PHP_EOL;'
+</pre></div>
+</figure>
+
+<figure>![](http://user-image.logdown.io/user/14835/blog/14031/post/384209/07ZNEo5fTjiAqtuQvbFd_QQ%E6%88%AA%E5%9B%BE20151223190807.png)</figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/12/23/Kiwi-CTF-2015-Gaychal-rev80/" data-id="cjx6w1js40006l6vqqnszy3ia" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/12/23/TMCTF-2015-Analysis-Offensive-200/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          TMCTF 2015 Analysis-Offensive 200
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/10/26/TUM-CTF-Teaser-Reverse-10/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">TUM CTF Teaser Reverse 10</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/06/22/Blog-Migrated/">搬家</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/14/AIS3-2016-pre-exam/">AIS3 2016 pre-exam</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/12/DEFCON-Qualifier-Reverse-amadhj-by-angr/">DEFCON Qualifier Reverse amadhj by angr</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/27/ADL-CTF-2015-SimpleEcho2/">ADL CTF 2015 - SimpleEcho2</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/01/CSP-CTF-pwn-40-vecho/">CSP CTF pwn 40 - vecho</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Wayne Lee<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

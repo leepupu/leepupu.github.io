@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>DEFCON Qualifier Reverse amadhj by angr | Work</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="題目比賽時用 python 重寫各個 function，然後嘗試用 z3 解，但不知為何，每個 char 加上限制後 check 都 unsat 。 賽後 lays 大大研究了 KLEE 的解法 link 因為最近在看 angr ，就用 angr 試著解解看此題 這題看起來就是標準 symbolic solve 題 有個主要的 check function 參數是一 32 bytes buffer">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DEFCON Qualifier Reverse amadhj by angr">
+<meta property="og:url" content="http://yoursite.com/2016/06/12/DEFCON-Qualifier-Reverse-amadhj-by-angr/index.html">
+<meta property="og:site_name" content="Work">
+<meta property="og:description" content="題目比賽時用 python 重寫各個 function，然後嘗試用 z3 解，但不知為何，每個 char 加上限制後 check 都 unsat 。 賽後 lays 大大研究了 KLEE 的解法 link 因為最近在看 angr ，就用 angr 試著解解看此題 這題看起來就是標準 symbolic solve 題 有個主要的 check function 參數是一 32 bytes buffer">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2019-06-22T02:12:31.940Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DEFCON Qualifier Reverse amadhj by angr">
+<meta name="twitter:description" content="題目比賽時用 python 重寫各個 function，然後嘗試用 z3 解，但不知為何，每個 char 加上限制後 check 都 unsat 。 賽後 lays 大大研究了 KLEE 的解法 link 因為最近在看 angr ，就用 angr 試著解解看此題 這題看起來就是標準 symbolic solve 題 有個主要的 check function 參數是一 32 bytes buffer">
+  
+    <link rel="alternate" href="/atom.xml" title="Work" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Work</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-DEFCON-Qualifier-Reverse-amadhj-by-angr" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/06/12/DEFCON-Qualifier-Reverse-amadhj-by-angr/" class="article-date">
+  <time datetime="2016-06-12T05:12:44.000Z" itemprop="datePublished">2016-06-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      DEFCON Qualifier Reverse amadhj by angr
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="題目"><a href="#題目" class="headerlink" title="題目"></a>題目</h2><p>比賽時用 python 重寫各個 function，然後嘗試用 z3 解，但不知為何，每個 char 加上限制後 check 都 unsat 。</p>
+<p>賽後 lays 大大研究了 KLEE 的解法 <a href="http://blog.l4ys.tw/2016/05/defcon-ctf-quals-2016-amadhj/" target="_blank" rel="noopener">link</a></p>
+<p>因為最近在看 angr ，就用 angr 試著解解看此題</p>
+<p>這題看起來就是標準 symbolic solve 題</p>
+<p>有個主要的 check function 參數是一 32 bytes buffer</p>
+<p>在 check function 裡 read(0, buf, 32)</p>
+<p>input 32 bytes, 分成 4 * qword 丟到 4 個function 算一算後 xor 再一起，與 const 比對，檢查結果</p>
+<figure>![](http://user-image.logdown.io/user/14835/blog/14031/post/736942/9PCynJuIRGy3wYbIy4wp_TT.png)</figure>
+
+<h2 id="解題"><a href="#解題" class="headerlink" title="解題"></a>解題</h2><p>angr 底層也有用 z3 當 solve engine ， 所以最重要的是讓 angr 把 constrain 建立起來</p>
+<p>透過兩個 angr example 可以發現有沒有指定 symbolic symbol 的大小，速度差很多</p>
+<p><a href="https://github.com/angr/angr-doc/tree/master/examples/defcon2016quals_baby-re_1" target="_blank" rel="noopener">baby-re solve1</a></p>
+<p><a href="https://github.com/angr/angr-doc/tree/master/examples/defcon2016quals_baby-re_0" target="_blank" rel="noopener">baby-re solve2</a></p>
+<p>試著用 hook read 方式指定 sybolic symbol</p>
+<figure class="figure-code code"><div class="highlight"><pre>def patch_read(s):
+    global concated_str
+    print 'patch'
+    t = []
+    for i in range(4):
+        inp = s.se.BVS('usr_input', 8*8) # QWORD
+        s.memory.store(s.regs.rsi+8*i, inp)
+        t.append(inp)
+
+<pre><code>gsss.append(claripy.Concat(*t))
+return</code></pre><p></p></pre></div><p></p>
+</figure>
+
+<p>state 從 check function 開始跑</p>
+<p>指定好 find(compare success), avoid(compare fail) 後，剩下的就交給 explorer 去跑</p>
+<figure class="figure-code code"><div class="highlight"><pre>def exp():
+    global concated_str
+    path = b.factory.path(state=s)
+    ex = b.surveyors.Explorer(start=path, find=(0x040287F,), avoid=(0x0402886,), enable_veritesting=True)
+    ex.run()
+    if ex.found:
+            print "found"
+            for ss in concated_str:
+                print ex.found[0].state.se.any_str(ss)
+</pre></div>
+</figure>
+
+<p>-重要的是 check function 的參數要固定, hook 的 symbolic symbol 才會放在對的地方</p>
+<figure class="figure-code code"><div class="highlight"><pre>b = angr.Project('./amadhj')
+b.hook(0x4026FD, patch_read, length=5)
+s = b.factory.blank_state(addr=test_func)
+s.regs.rdi = 0x1000 # make sure symbolic symbol at same location
+</pre></div>
+</figure>
+
+<p>或者是可以直接在 state 裡面放 symbolic symbol 然後讓 check function 的參數指過去，這樣的話 hook function 直接 return  即可</p>
+<p><a href="https://gist.github.com/leepupu/01ae2064ddc50aea9ff0d59061da1e38" target="_blank" rel="noopener">python script</a></p>
+<p>跑約十幾分鐘會有結果</p>
+<figure class="figure-code code"><div class="highlight"><pre>DEBUG   | 2016-06-12 13:11:09,750 | angr.surveyors.explorer | Avoiding path &lt;Path with 738 runs (at 0x402886)&gt;.
+DEBUG   | 2016-06-12 13:11:09,752 | angr.surveyors.explorer | Done because we have no active paths left!
+found
+
+<p>A PrFURjDMboQJ ScKvoH cDl  BQDqp</p>
+<p></p></pre></div><p></p>
+</figure>
+
+<p><a href="http://docs.angr.io/docs/toplevel.html" target="_blank" rel="noopener">angr docs</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/06/12/DEFCON-Qualifier-Reverse-amadhj-by-angr/" data-id="cjx6w1js00004l6vqorjxzbr6" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/07/14/AIS3-2016-pre-exam/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          AIS3 2016 pre-exam
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/03/27/ADL-CTF-2015-SimpleEcho2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">ADL CTF 2015 - SimpleEcho2</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/06/22/Blog-Migrated/">搬家</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/14/AIS3-2016-pre-exam/">AIS3 2016 pre-exam</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/12/DEFCON-Qualifier-Reverse-amadhj-by-angr/">DEFCON Qualifier Reverse amadhj by angr</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/27/ADL-CTF-2015-SimpleEcho2/">ADL CTF 2015 - SimpleEcho2</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/01/CSP-CTF-pwn-40-vecho/">CSP CTF pwn 40 - vecho</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Wayne Lee<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

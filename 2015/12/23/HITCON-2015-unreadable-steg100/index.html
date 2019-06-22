@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>HITCON 2015 - unreadable [steg100] | Work</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="題目 Can you read me? unreadable-4b2868cc26a8dad5695e537a9dd8a164  過程拿到一隻 binary file 先用 file, binwalk 檢查，都沒結果。 直接用 xxd 看，檔案太大不好看，output 輸出成 file 後用 sublime text 一看 ![](http://user-image.logdown.io/user">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HITCON 2015 - unreadable [steg100]">
+<meta property="og:url" content="http://yoursite.com/2015/12/23/HITCON-2015-unreadable-steg100/index.html">
+<meta property="og:site_name" content="Work">
+<meta property="og:description" content="題目 Can you read me? unreadable-4b2868cc26a8dad5695e537a9dd8a164  過程拿到一隻 binary file 先用 file, binwalk 檢查，都沒結果。 直接用 xxd 看，檔案太大不好看，output 輸出成 file 後用 sublime text 一看 ![](http://user-image.logdown.io/user">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2019-06-22T02:12:31.940Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HITCON 2015 - unreadable [steg100]">
+<meta name="twitter:description" content="題目 Can you read me? unreadable-4b2868cc26a8dad5695e537a9dd8a164  過程拿到一隻 binary file 先用 file, binwalk 檢查，都沒結果。 直接用 xxd 看，檔案太大不好看，output 輸出成 file 後用 sublime text 一看 ![](http://user-image.logdown.io/user">
+  
+    <link rel="alternate" href="/atom.xml" title="Work" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Work</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-HITCON-2015-unreadable-steg100" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/12/23/HITCON-2015-unreadable-steg100/" class="article-date">
+  <time datetime="2015-12-23T12:03:59.000Z" itemprop="datePublished">2015-12-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      HITCON 2015 - unreadable [steg100]
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="題目"><a href="#題目" class="headerlink" title="題目"></a>題目</h2><blockquote>
+<p>Can you read me?</p>
+<p><a href="https://github.com/ctfs/write-ups-2015/blob/master/hitcon-ctf-quals-2015/stego/unreadable/unreadable-4b2868cc26a8dad5695e537a9dd8a164" target="_blank" rel="noopener">unreadable-4b2868cc26a8dad5695e537a9dd8a164</a></p>
+</blockquote>
+<h2 id="過程"><a href="#過程" class="headerlink" title="過程"></a>過程</h2><p>拿到一隻 binary file 先用 file, binwalk 檢查，都沒結果。</p>
+<p>直接用 xxd 看，檔案太大不好看，output 輸出成 file 後用 sublime text 一看</p>
+<figure>![](http://user-image.logdown.io/user/14835/blog/14031/post/384384/HhsU0aWqS92g3lGdDr8g_QQ%E6%88%AA%E5%9B%BE20151223190807.png)</figure>
+
+<p>由許多 unprintable 的 char 當作背景拚出了 flag 的樣子</p>
+<figure class="figure-code code"><div class="highlight"><pre>hitcon{WE USE XXD INSTEAD OF IDA PRO}
+</pre></div>
+</figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/12/23/HITCON-2015-unreadable-steg100/" data-id="cjx6w1js10005l6vqwwy4yr5o" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/02/01/Puzzle-Dragon-Helper/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Puzzle &amp; Dragon Helper
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/12/23/TMCTF-2015-Analysis-Offensive-200/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">TMCTF 2015 Analysis-Offensive 200</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/06/22/Blog-Migrated/">搬家</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/14/AIS3-2016-pre-exam/">AIS3 2016 pre-exam</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/12/DEFCON-Qualifier-Reverse-amadhj-by-angr/">DEFCON Qualifier Reverse amadhj by angr</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/27/ADL-CTF-2015-SimpleEcho2/">ADL CTF 2015 - SimpleEcho2</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/01/CSP-CTF-pwn-40-vecho/">CSP CTF pwn 40 - vecho</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Wayne Lee<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

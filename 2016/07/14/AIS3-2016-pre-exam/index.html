@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>AIS3 2016 pre-exam | Work</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="MISC1pt直接給 flag 2pt用 xxd 看可以看到 header 有 7Z 修正成 7z 後用 7z l UNPACK_ME 可以確定是 7z file with password, 包非常多層的 7z compressed file 看到有個 size 0 檔名亂數的檔案 當作密碼可以解開第一層 7z 之後每一層都有 secret.txt 裡面有下一層的密碼 寫個 script 跑 總">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AIS3 2016 pre-exam">
+<meta property="og:url" content="http://yoursite.com/2016/07/14/AIS3-2016-pre-exam/index.html">
+<meta property="og:site_name" content="Work">
+<meta property="og:description" content="MISC1pt直接給 flag 2pt用 xxd 看可以看到 header 有 7Z 修正成 7z 後用 7z l UNPACK_ME 可以確定是 7z file with password, 包非常多層的 7z compressed file 看到有個 size 0 檔名亂數的檔案 當作密碼可以解開第一層 7z 之後每一層都有 secret.txt 裡面有下一層的密碼 寫個 script 跑 總">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2019-06-22T02:12:31.940Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AIS3 2016 pre-exam">
+<meta name="twitter:description" content="MISC1pt直接給 flag 2pt用 xxd 看可以看到 header 有 7Z 修正成 7z 後用 7z l UNPACK_ME 可以確定是 7z file with password, 包非常多層的 7z compressed file 看到有個 size 0 檔名亂數的檔案 當作密碼可以解開第一層 7z 之後每一層都有 secret.txt 裡面有下一層的密碼 寫個 script 跑 總">
+  
+    <link rel="alternate" href="/atom.xml" title="Work" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Work</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-AIS3-2016-pre-exam" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/14/AIS3-2016-pre-exam/" class="article-date">
+  <time datetime="2016-07-14T09:28:47.000Z" itemprop="datePublished">2016-07-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      AIS3 2016 pre-exam
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="MISC"><a href="#MISC" class="headerlink" title="MISC"></a>MISC</h2><h3 id="1pt"><a href="#1pt" class="headerlink" title="1pt"></a>1pt</h3><p>直接給 flag</p>
+<h3 id="2pt"><a href="#2pt" class="headerlink" title="2pt"></a>2pt</h3><p>用 xxd 看可以看到 header 有 7Z</p>
+<p>修正成 7z 後用 <code>7z l UNPACK_ME</code></p>
+<p>可以確定是 7z file with password, 包非常多層的 7z compressed file</p>
+<p>看到有個 size 0 檔名亂數的檔案 當作密碼可以解開第一層 7z</p>
+<p>之後每一層都有 secret.txt 裡面有下一層的密碼</p>
+<p>寫個 script 跑 總共有 1000 層</p>
+<h3 id="3pt"><a href="#3pt" class="headerlink" title="3pt"></a>3pt</h3><p>讓你打包一個 guess.txt 檔案上傳 server 用 sha1 檢查 hash 跟 flag 是否一樣</p>
+<p>傳一個 symbol link link 到 flag 身上即可</p>
+<hr>
+<h2 id="CRYPTO"><a href="#CRYPTO" class="headerlink" title="CRYPTO"></a>CRYPTO</h2><h3 id="1pt-1"><a href="#1pt-1" class="headerlink" title="1pt"></a>1pt</h3><p>xor 加密找加密 key</p>
+<p>觀念是嘗試不同的 key 長度 一個一個 byte 去解密 讓他整個檔案出來是 printable</p>
+<p>有<a href="https://wiremask.eu/tools/xor-cracker/" target="_blank" rel="noopener">線上工具</a></p>
+<h3 id="2pt-1"><a href="#2pt-1" class="headerlink" title="2pt"></a>2pt</h3><p>這種讓你提供輸入但是要附上輸入的 hash 有種攻擊叫 length-extension attack</p>
+<p>有類似題目的 script</p>
+<p>後面 append 合法的 expire 即可</p>
+<h3 id="3pt-1"><a href="#3pt-1" class="headerlink" title="3pt"></a>3pt</h3><p>好像叫做 Batch GCD Attack</p>
+<p>就是 rsa 的 n 共用到同一個植樹的話用 GCD 可以很容易質因數分解出 n</p>
+<p>但這題目裡有很多組 n 可以被分解 所以都要試試看</p>
+<p>另外是這一題的 exponent 不適常用的 65537 這一點我很後面才發現</p>
+<p>以後要先讀清楚 key 資訊</p>
+<p><code>openssl rsa -noout -text -inform PEM -in pub/1.pub -pubin</code></p>
+<p><code>Exponent: 179424787 (0xab1ce13)</code></p>
+<hr>
+<h2 id="BINARY"><a href="#BINARY" class="headerlink" title="BINARY"></a>BINARY</h2><h3 id="1pt-2"><a href="#1pt-2" class="headerlink" title="1pt"></a>1pt</h3><p>直接上 angr </p>
+<script src="https://gist.github.com/leepupu/a43dfde79d46ccbb53c77e1d81687c63.js"></script>
+
+<h3 id="2pt-2"><a href="#2pt-2" class="headerlink" title="2pt"></a>2pt</h3><p>這一題轉成 binary file 後用工具看 開頭挺誤導的 還以為是要轉換順序之類的</p>
+<p>後來隨便 google 一下裡面的 bytes 查到 asm opcode 立馬開 ida 把 binary file 解成 asm code</p>
+<p>發現是 xor 解密的 asm 手動就能解開了</p>
+<h3 id="3pt-2"><a href="#3pt-2" class="headerlink" title="3pt"></a>3pt</h3><p>一樣上 angr (稍微會用 angr 之後都不用動腦了呢)</p>
+<hr>
+<h2 id="REMOTE-pwn"><a href="#REMOTE-pwn" class="headerlink" title="REMOTE (pwn)"></a>REMOTE (pwn)</h2><h3 id="1pt-3"><a href="#1pt-3" class="headerlink" title="1pt"></a>1pt</h3><p>用 time(0) 去 srand ，只要和 server 時間差不超過一秒的得到的 rand() 序列會相同</p>
+<script src="https://gist.github.com/leepupu/47c1df7e1c2b2444752d89c854cc43bc.js"></script>
+
+<h3 id="2pt-3"><a href="#2pt-3" class="headerlink" title="2pt"></a>2pt</h3><p>常見的 scanf 錯誤，參數直接傳入變數而非變數地址</p>
+<p>由於 stack 中的殘渣內容會在前面的動作決定，所以可以控制變數內容，直接對GOT地址寫入噴FLAG的地址</p>
+<p>推薦使用 qira 可以很快找到 stack 內容變化跟偏移</p>
+<p>‘</p>
+<h3 id="3pt-3"><a href="#3pt-3" class="headerlink" title="3pt"></a>3pt</h3><p>不用碰到 libc 的 heap 題，用 checksec 檢查會發現沒有開 NX ， 估計是能用 shellcode ，玩一下程式，功能大致如下</p>
+<ul>
+<li>一開始有讀入 .bss buffer 可以塞東西</li>
+<li>student struct 內有 function pointer</li>
+<li>note malloc size 可控</li>
+<li>note point 存在 array 中，能 free pointer</li>
+</ul>
+<p>一開始的 buffer 是在 bss 上面地址已知,可放入 shellcode ，之後跳 bss 地址即可。</p>
+<p>接著找找看 bug, 發現在 free note 之後並沒有將 note array 中 entry 清空，可能導致 UAF, double free 等等問題</p>
+<p>因為 student 中有 function pointer, 嘗試將兩個 struct 重疊然後直接寫入 function pointer 到 bss 上面。</p>
+<p>這邊倒推想一下：</p>
+<p>目標為覆蓋 <code>current_student</code> 上面的 function pointer =&gt; 寫入 note 時改寫到 pointer</p>
+<p>讓 note struct 疊合 <code>current_student</code> ，首先看一下 note create 是 malloc 出 note buffer 後直接寫入內容 =&gt; 必須讓 note malloc 出<code>current_student</code>的位址(或重疊的地址)</p>
+<p>為了讓 malloc 出 <code>current_student</code> 的位置，首先 malloc 的 size 要跟 student 一樣，而且 student 那一塊 chunk 要是 free 的</p>
+<p>然而並沒有 free student 的功能, 所以先建立並馬上釋放一個 note ， size 跟 student 一樣，如此一來 notes array 第一個格子就是 heap 下一次 malloc 同樣 size 會被拿出的 pointer</p>
+<p>然後建立 student ，這時 <code>current_student</code> 會跟 notes array 第一格相同，也就是剛剛 free 掉的地址</p>
+<p>接著為了要讓 note malloc 再度拿出相同的地址，必須要再 free 一次第一個 note, 因為此時這個 pointer 是被 <code>current_student</code> 使用的</p>
+<p>free 完後再 create note with same size 馬上又會拿出和 <code>current_student</code> 相同的 pointer</p>
+<p>對此 note 寫入即是覆蓋 student struct</p>
+<p>改寫 function pointer 後選 menu 2 <code>Show a student</code> 會 call function pointer 指向的地方</p>
+<script src="https://gist.github.com/leepupu/38cf887e5ab1a364e2a796e0e73423f7.js"></script>
+
+<hr>
+<h2 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h2><h3 id="1pt-4"><a href="#1pt-4" class="headerlink" title="1pt"></a>1pt</h3><p>robots.txt</p>
+<h3 id="2pt-4"><a href="#2pt-4" class="headerlink" title="2pt"></a>2pt</h3><p>header 偽造 src ip</p>
+<p>以下都設定為 127.0.0.1</p>
+<p>`HTTP_X_FORWARDED_FOR</p>
+<p>HTTP_CLIENT_IP</p>
+<p>HTTP_X_FORWARDED</p>
+<p>HTTP_X_CLUSTER_CLIENT_IP</p>
+<p>HTTP_FORWARDED_FOR</p>
+<p>HTTP_FORWARDED`</p>
+<h3 id="3pt-4"><a href="#3pt-4" class="headerlink" title="3pt"></a>3pt</h3><p>講一下找 function bug 想法</p>
+<p>首先可以下載 php source, p=../download.php 看到裡面有 include waf.php，</p>
+<p>waf.php 使用字串解析把 url 的 query 不分拆成 key=&gt;value 然後對黑名單驗證，</p>
+<p>由於有用 <code>file_exists</code> 檢查檔案名稱，無法在檔名部分塞東西或編碼，</p>
+<p>仔細看一下 waf.php 做的事情跟從 <code>$_GET</code> 取值檢查有87%像，特別自己分析大概就是分析的地方有問題，</p>
+<p>比對部分有用 <code>===</code> 所以不是 PHP 常見的比較問題，接著就開始朝 php function bug 部分 google。</p>
+<p>發現用 <code>parse_url bug</code> google 可以發現各種歷年來的 BUG ，將時間限定一年內可以在前幾筆看到 <a href="http://stackoverflow.com/questions/34020735/parse-url-does-not-parse-a-specific-url" target="_blank" rel="noopener">這一篇</a></p>
+<p>於是用 <code>?p=../flag.php&amp;amp;a=ss:88888</code> 便可以拿到 flag</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/07/14/AIS3-2016-pre-exam/" data-id="cjx6w1jrv0001l6vqzcj221zh" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/06/22/Blog-Migrated/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          搬家
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/06/12/DEFCON-Qualifier-Reverse-amadhj-by-angr/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">DEFCON Qualifier Reverse amadhj by angr</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/06/22/Blog-Migrated/">搬家</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/14/AIS3-2016-pre-exam/">AIS3 2016 pre-exam</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/12/DEFCON-Qualifier-Reverse-amadhj-by-angr/">DEFCON Qualifier Reverse amadhj by angr</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/27/ADL-CTF-2015-SimpleEcho2/">ADL CTF 2015 - SimpleEcho2</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/01/CSP-CTF-pwn-40-vecho/">CSP CTF pwn 40 - vecho</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Wayne Lee<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
