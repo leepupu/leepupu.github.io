@@ -64,6 +64,58 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Comfortable-Dev-Experence-on-Windows-With-WSL2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/06/22/Comfortable-Dev-Experence-on-Windows-With-WSL2/" class="article-date">
+  <time datetime="2019-06-22T03:00:16.000Z" itemprop="datePublished">2019-06-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/22/Comfortable-Dev-Experence-on-Windows-With-WSL2/">在 Windows 環境中舒適的開發</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="WSL2"><a href="#WSL2" class="headerlink" title="WSL2"></a>WSL2</h1><p>繼 WSL 1 後，Windows 決定直接在 Windows 中加入 Linux Kernel 提供更全面的開發環境相容，也能夠支援原本 WSL 1 無法支援的 syscall 像是 ptrace 等等，原理是使用 MS 自己的輕量虛擬技術，也就是 MS 自己管理了一顆 linux kernel 再跑，運行時會先吃掉一些 memory, 不使用時可以用 <code>wsl --shutdown</code> 關掉。更好的是不用開啟 HyperV Component 就能使用。</p>
+<p>目前的 windows insider program 已經有 preview 版的 WSL2 可以使用，檔案系統速度提升有感，不過必須要是在 wsl2 的 rootfs 裡面，若存取 /mnt/ 速度反而會變慢</p>
+<p><img src="https://i.imgur.com/HBMCpFQ.png" alt></p>
+<p>可以透過 <code>\\wsl$\Ubuntu\home\</code> 或是直接在某個資料夾中執行 <code>explorer.exe .</code> 打開 windows 的 GUI 存取檔案，不得不說 windows 的 GUI 真的很棒棒</p>
+<p>大致上用起來很順，不過因為是 preview 版本，目前還有待改進的如下：</p>
+<ul>
+<li>網路存取，目前必須用動態內網 IP 存取 WSL2 裡面跑的 service <a href="https://docs.microsoft.com/en-us/windows/wsl/wsl2-ux-changes#accessing-network-applications" target="_blank" rel="noopener">Ref</a></li>
+<li>曾經多次遇到運行 wsl 無法進入 /mnt mount 的資料夾，可能是 mount windows drive 失敗，目前可以透過重開 <code>wsl --shutdown</code> 來解決</li>
+</ul>
+<h1 id="VSCODE-with-Remote-WSL"><a href="#VSCODE-with-Remote-WSL" class="headerlink" title="VSCODE with Remote WSL"></a>VSCODE with Remote WSL</h1><p>VSCODE 最新 stable 提供了 remote development 功能，原理是在遠端機器中跑一個 vscode remote server，而原本的 windows 端 VSCODE 變成主要提供 GUI 介面</p>
+<p>這真的是 windows 開發者一大福音。</p>
+<p>有許多 plugin 使用的 script engine 原本是要吃系統的，也就是說就算使用 wsl 也必須在 windows 安裝一份，同時也會遇到許多 windows 特有的 bug，使用 remote dev 把 vscode core 放進 wsl 後 extension 等會使用到額外 binary 的都可以直接跑在 linux 中</p>
+<p>另外一個原本很大的問題是 debugger 再使用 terminal 跑 nodejs debugger mode 時會跟 integrated wsl terminal 衝突，無法直接跑起來，只能用 remote attach 暫時解決</p>
+<p>支援 remote develop 後很多問題都解決了，目前還有遇到的問題像是 file list sync 有時會不靈敏等等，也比上面阻礙的問題小很多了</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/06/22/Comfortable-Dev-Experence-on-Windows-With-WSL2/" data-id="cjx6y8af90005h3vqnp43dzif" class="article-share-link">Share</a>
+      
+        <a href="http://yoursite.com/2019/06/22/Comfortable-Dev-Experence-on-Windows-With-WSL2/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Blog-Migrated" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/06/22/Blog-Migrated/" class="article-date">
@@ -91,7 +143,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/22/Blog-Migrated/" data-id="cjx6x762900048wvqe93e5176" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/06/22/Blog-Migrated/" data-id="cjx6y8afb0007h3vq9f0w6unq" class="article-share-link">Share</a>
+      
+        <a href="http://yoursite.com/2019/06/22/Blog-Migrated/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -206,7 +260,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/07/14/AIS3-2016-pre-exam/" data-id="cjx6x762500028wvqa2e1oohb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/07/14/AIS3-2016-pre-exam/" data-id="cjx6y8af40002h3vq1louigzs" class="article-share-link">Share</a>
+      
+        <a href="http://yoursite.com/2016/07/14/AIS3-2016-pre-exam/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -303,7 +359,9 @@ found
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/06/12/DEFCON-Qualifier-Reverse-amadhj-by-angr/" data-id="cjx6x762d00078wvqu5csneiw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/06/12/DEFCON-Qualifier-Reverse-amadhj-by-angr/" data-id="cjx6y8afd0008h3vqjm1vsskg" class="article-share-link">Share</a>
+      
+        <a href="http://yoursite.com/2016/06/12/DEFCON-Qualifier-Reverse-amadhj-by-angr/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -366,7 +424,9 @@ found
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/03/27/ADL-CTF-2015-SimpleEcho2/" data-id="cjx6x761y00008wvqasre9oer" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/03/27/ADL-CTF-2015-SimpleEcho2/" data-id="cjx6y8aex0000h3vq5juc4u0x" class="article-share-link">Share</a>
+      
+        <a href="http://yoursite.com/2016/03/27/ADL-CTF-2015-SimpleEcho2/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -511,7 +571,9 @@ add esp, ecx
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/02/01/CSP-CTF-pwn-40-vecho/" data-id="cjx6x762c00068wvqhllxv6hq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/02/01/CSP-CTF-pwn-40-vecho/" data-id="cjx6y8afa0006h3vqubxrtoz2" class="article-share-link">Share</a>
+      
+        <a href="http://yoursite.com/2016/02/01/CSP-CTF-pwn-40-vecho/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -567,7 +629,9 @@ add esp, ecx
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/02/01/Puzzle-Dragon-Helper/" data-id="cjx6x762h000a8wvq3dk921ln" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/02/01/Puzzle-Dragon-Helper/" data-id="cjx6y8afm000eh3vqullpuu38" class="article-share-link">Share</a>
+      
+        <a href="http://yoursite.com/2016/02/01/Puzzle-Dragon-Helper/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -614,7 +678,9 @@ add esp, ecx
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/12/23/HITCON-2015-unreadable-steg100/" data-id="cjx6x762e00088wvqp9iy0mlm" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/12/23/HITCON-2015-unreadable-steg100/" data-id="cjx6y8afe0009h3vqcqidifo7" class="article-share-link">Share</a>
+      
+        <a href="http://yoursite.com/2015/12/23/HITCON-2015-unreadable-steg100/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -658,7 +724,9 @@ add esp, ecx
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/12/23/TMCTF-2015-Analysis-Offensive-200/" data-id="cjx6x762l000c8wvqamp814wf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/12/23/TMCTF-2015-Analysis-Offensive-200/" data-id="cjx6y8afk000ch3vqak41uo3b" class="article-share-link">Share</a>
+      
+        <a href="http://yoursite.com/2015/12/23/TMCTF-2015-Analysis-Offensive-200/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -730,87 +798,9 @@ eval($a);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/12/23/Kiwi-CTF-2015-Gaychal-rev80/" data-id="cjx6x762g00098wvqryukojyu" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/12/23/Kiwi-CTF-2015-Gaychal-rev80/" data-id="cjx6y8aff000ah3vq3ohdu0mx" class="article-share-link">Share</a>
       
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-TUM-CTF-Teaser-Reverse-10" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/10/26/TUM-CTF-Teaser-Reverse-10/" class="article-date">
-  <time datetime="2015-10-26T08:53:35.000Z" itemprop="datePublished">2015-10-26</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/10/26/TUM-CTF-Teaser-Reverse-10/">TUM CTF Teaser Reverse 10</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="不算太難的-Reverse-，比較像考-little-endian"><a href="#不算太難的-Reverse-，比較像考-little-endian" class="headerlink" title="不算太難的 Reverse ，比較像考 little-endian"></a>不算太難的 Reverse ，比較像考 little-endian</h2><h3 id="建立-table"><a href="#建立-table" class="headerlink" title="建立 table"></a>建立 table</h3><p>用 ida 看 發現是用 scanf %llx 讀入 64bit hex 表示的 long long int </p>
-<p>輸入的數值會先被 |= 0x8000000000000000;</p>
-<p>接著往下看是個 16 次的迴圈，是把輸入的數字每四 bits 取出當 index 加上 local 變數的地圵 找出這個位置後以 byte 為單位加一</p>
-<p>把兩個 int64 裡面的 bytes 當 array 用</p>
-<p>看 code 比較實在 XD</p>
-<figure class="figure-code code"><div class="highlight"><pre>__int64 v10; // [sp+10h] [bp-18h]@1
-  __int64 v11; // [sp+18h] [bp-10h]@1
-v10 = 0LL;
-  v11 = 0LL;
-
-<p>v4 = 0;<br>  do<br>  {<br>    v5 = 4 * v4++; //從低位址開始 4bits 4bits 取  其實就是 hex 表示數字的一個字 (0~F)<br>    ++*((_BYTE *)&amp;v10 + ((v3 &amp; (15LL &lt;&lt; v5)) &gt;&gt; v5)); // v10 是 int64 有 8ytes 但 4bits 可以表示到 15 這邊是伏筆<br>  }<br>  while ( v4 != 16 );<br></p></pre></div><p></p>
-</figure>
-
-<h3 id="check-階段"><a href="#check-階段" class="headerlink" title="check 階段"></a>check 階段</h3><p>一樣 16 次的 loop 這次變數(v6)從 0 ~ -15</p>
-<figure class="figure-code code"><div class="highlight"><pre>v6 = 0LL;
-  while ( 1 )
-  {
-    v7 = *((_BYTE *)&amp;v11 + v6 + 7); // +7 常數所以是從 v11 的最後一個 byte 往前看 看到 v10 的最低 byte 為止
-    if ( v7 ) // 若不為零 
-    {
-      if ( v7 != (_BYTE)v6 + 15 || v7 &gt; 8u )
-        break;
-    }
-    --v6;
-    if ( v6 == -15 )
-    {
-      puts(":)");
-      system("cat flag.txt");
-      return 0;
-    }
-  }
-</pre></div>
-</figure>
-
-<p>若 byte 中不為零 會以下圖中數字 check</p>
-<figure>![](http://i.imgur.com/qVekBBT.jpg)</figure>
-
-<p>整理一下 若輸入 0 =&gt; |= 0x8000000000000000 =&gt; 15 次 index offset = 0, 1次 offset 8</p>
-<p>=&gt; v10 的第一的 byte 會變成 15, v11 的第一個 byte = 1</p>
-<p>=&gt; check 時希望 v11 的第一個 byte 要是 8 =&gt; fail</p>
-<p>也就是要湊數字填 table, 為了讓 check 通過必須得數字出現的次數跟數值一樣 ex, 55555, 333, 999999999</p>
-<p>然後要 16 位( 64 bits long long int) 因為數直會先被 |= 0x8000000000000000 也就是有一位被限制要 &gt;= 8</p>
-<p>以上就是全部條件 那就來填填看 0x8888888844443331 =&gt; 通過</p>
-<p>存在多組解 符合以上條件都可以 ex 0x8888888855555333 也行</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/10/26/TUM-CTF-Teaser-Reverse-10/" data-id="cjx6x762m000d8wvqupstla2n" class="article-share-link">Share</a>
+        <a href="http://yoursite.com/2015/12/23/Kiwi-CTF-2015-Gaychal-rev80/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -856,6 +846,10 @@ v10 = 0LL;
       <ul>
         
           <li>
+            <a href="/2019/06/22/Comfortable-Dev-Experence-on-Windows-With-WSL2/">在 Windows 環境中舒適的開發</a>
+          </li>
+        
+          <li>
             <a href="/2019/06/22/Blog-Migrated/">搬家</a>
           </li>
         
@@ -869,10 +863,6 @@ v10 = 0LL;
         
           <li>
             <a href="/2016/03/27/ADL-CTF-2015-SimpleEcho2/">ADL CTF 2015 - SimpleEcho2</a>
-          </li>
-        
-          <li>
-            <a href="/2016/02/01/CSP-CTF-pwn-40-vecho/">CSP CTF pwn 40 - vecho</a>
           </li>
         
       </ul>
@@ -903,6 +893,18 @@ v10 = 0LL;
   
 </nav>
     
+<script>
+  var disqus_shortname = 'leepupu';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 

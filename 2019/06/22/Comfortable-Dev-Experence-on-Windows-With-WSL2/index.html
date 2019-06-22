@@ -5,19 +5,21 @@
   
 
   
-  <title>Summer 2015 | Dream Afar</title>
+  <title>在 Windows 環境中舒適的開發 | Dream Afar</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Life忙碌的暑假終於要過完了 來寫點心得吧 從七八月 VMFive 實習 到 HITCON 再到 AIS3 暑訓課程中間還穿插著要回中央值班，開會 偶爾假日還要回家過著兩個多月的三點生活 三下時想說暑假不要荒廢，找了些公司去面試實習機會，由於之前的實習經驗覺的還是新創公司風氣比較自由，不論是知識共享或接受新知的程度都很高。 原本想直接找做資安相關的公司去實習，但不是我沒找到就是比較晚才釋出實習消">
+  <meta name="description" content="WSL2繼 WSL 1 後，Windows 決定直接在 Windows 中加入 Linux Kernel 提供更全面的開發環境相容，也能夠支援原本 WSL 1 無法支援的 syscall 像是 ptrace 等等，原理是使用 MS 自己的輕量虛擬技術，也就是 MS 自己管理了一顆 linux kernel 再跑，運行時會先吃掉一些 memory, 不使用時可以用 wsl --shutdown 關掉">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Summer 2015">
-<meta property="og:url" content="http://yoursite.com/2015/05/23/COC-Proxy/index.html">
+<meta property="og:title" content="在 Windows 環境中舒適的開發">
+<meta property="og:url" content="http://yoursite.com/2019/06/22/Comfortable-Dev-Experence-on-Windows-With-WSL2/index.html">
 <meta property="og:site_name" content="Dream Afar">
-<meta property="og:description" content="Life忙碌的暑假終於要過完了 來寫點心得吧 從七八月 VMFive 實習 到 HITCON 再到 AIS3 暑訓課程中間還穿插著要回中央值班，開會 偶爾假日還要回家過著兩個多月的三點生活 三下時想說暑假不要荒廢，找了些公司去面試實習機會，由於之前的實習經驗覺的還是新創公司風氣比較自由，不論是知識共享或接受新知的程度都很高。 原本想直接找做資安相關的公司去實習，但不是我沒找到就是比較晚才釋出實習消">
+<meta property="og:description" content="WSL2繼 WSL 1 後，Windows 決定直接在 Windows 中加入 Linux Kernel 提供更全面的開發環境相容，也能夠支援原本 WSL 1 無法支援的 syscall 像是 ptrace 等等，原理是使用 MS 自己的輕量虛擬技術，也就是 MS 自己管理了一顆 linux kernel 再跑，運行時會先吃掉一些 memory, 不使用時可以用 wsl --shutdown 關掉">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2019-06-22T02:22:25.870Z">
+<meta property="og:image" content="https://i.imgur.com/HBMCpFQ.png">
+<meta property="og:updated_time" content="2019-06-22T03:30:01.970Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Summer 2015">
-<meta name="twitter:description" content="Life忙碌的暑假終於要過完了 來寫點心得吧 從七八月 VMFive 實習 到 HITCON 再到 AIS3 暑訓課程中間還穿插著要回中央值班，開會 偶爾假日還要回家過著兩個多月的三點生活 三下時想說暑假不要荒廢，找了些公司去面試實習機會，由於之前的實習經驗覺的還是新創公司風氣比較自由，不論是知識共享或接受新知的程度都很高。 原本想直接找做資安相關的公司去實習，但不是我沒找到就是比較晚才釋出實習消">
+<meta name="twitter:title" content="在 Windows 環境中舒適的開發">
+<meta name="twitter:description" content="WSL2繼 WSL 1 後，Windows 決定直接在 Windows 中加入 Linux Kernel 提供更全面的開發環境相容，也能夠支援原本 WSL 1 無法支援的 syscall 像是 ptrace 等等，原理是使用 MS 自己的輕量虛擬技術，也就是 MS 自己管理了一顆 linux kernel 再跑，運行時會先吃掉一些 memory, 不使用時可以用 wsl --shutdown 關掉">
+<meta name="twitter:image" content="https://i.imgur.com/HBMCpFQ.png">
   
     <link rel="alternate" href="/atom.xml" title="Dream Afar" type="application/atom+xml">
   
@@ -66,10 +68,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-COC-Proxy" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Comfortable-Dev-Experence-on-Windows-With-WSL2" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/05/23/COC-Proxy/" class="article-date">
-  <time datetime="2015-05-23T11:44:07.000Z" itemprop="datePublished">2015-05-23</time>
+    <a href="/2019/06/22/Comfortable-Dev-Experence-on-Windows-With-WSL2/" class="article-date">
+  <time datetime="2019-06-22T03:00:16.000Z" itemprop="datePublished">2019-06-22</time>
 </a>
     
   </div>
@@ -80,7 +82,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Summer 2015
+      在 Windows 環境中舒適的開發
     </h1>
   
 
@@ -88,24 +90,27 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Life"><a href="#Life" class="headerlink" title="Life"></a>Life</h2><p>忙碌的暑假終於要過完了 來寫點心得吧</p>
-<p>從七八月 VMFive 實習 到 HITCON 再到 AIS3 暑訓課程<br>中間還穿插著要回中央值班，開會 偶爾假日還要回家<br>過著兩個多月的三點生活</p>
-<p>三下時想說暑假不要荒廢，找了些公司去面試實習機會，由於之前的實習經驗覺的還是新創公司風氣比較自由，不論是知識共享或接受新知的程度都很高。</p>
-<p>原本想直接找做資安相關的公司去實習，但不是我沒找到就是比較晚才釋出實習消息，所以就先找了些也蠻有興趣的公司去面試</p>
-<p>面試過程也學習了不少 印象最深的就是 Dcard 創辦人之一 Kytu 面試時直接跟我說到:”等著實習/徵才消息出來才行動就輸一半啦 真的積極的人都直接丟簡歷/相關作品的”</p>
-<p>另外也看到很紅的 VMFive 在徵實習 我對虛擬化技術也是蠻有興趣的 畢竟管了一台 ESXi. XD<br>跟 RD 主管 Patrick 面試過程很順利 面試中也提到了對資安的一些研究跟興趣<br>最後有幸能在 RD 部門做一些 Security 的研究</p>
-<p>今年 HITCON 對我而言最大的看點就是許多跟 “輔助程式” 有關的議題 更有機會可以遇到程式作者<br>這次 HITCON 有 nano 板子的題目 但幾乎都是 coding 題 還有一關迷宮可能根本走不出去＝＝</p>
-<p>這個暑假學到最多的就是 AIS3(新型態資安暑期課程) 了 在八月初的時候進行了一場 AIS3 pre-exam 前面名次才有機會正取這門課程 新型態大概是說難得有時做這麼多的課程吧</p>
-<p>這門課真的練到了許多以前聽過看過不會用的東西，課程中間還有場 MMA CTF 可以練習<br>課程間還把 Overthewire natas 破台<br>最後 Final exam 掛名 Bamboofox 打<br>web 連 1 分題都解不了啊 ◢▆▅▄▃ 崩 ╰(〒皿〒)╯ 潰 ▃▄▅▇◣<br>binary2 用爆破解出來頗爽 有機會來寫一下 write up</p>
-<p>整個暑假最累的就是通勤了 實習期間雖然已經跑著借助別人家 但上班每天還是要通勤兩個小時 (公車 石牌-信義安和 走路) 週三還要跑回中央開會<br>HITCON 跟 AIS3 直接從中央住處每天通勤 超級累</p>
-<p>也是實習後才知道學生時代是多麼的輕鬆悠閒 該來好好把握剩下的學生時光了</p>
+        <h1 id="WSL2"><a href="#WSL2" class="headerlink" title="WSL2"></a>WSL2</h1><p>繼 WSL 1 後，Windows 決定直接在 Windows 中加入 Linux Kernel 提供更全面的開發環境相容，也能夠支援原本 WSL 1 無法支援的 syscall 像是 ptrace 等等，原理是使用 MS 自己的輕量虛擬技術，也就是 MS 自己管理了一顆 linux kernel 再跑，運行時會先吃掉一些 memory, 不使用時可以用 <code>wsl --shutdown</code> 關掉。更好的是不用開啟 HyperV Component 就能使用。</p>
+<p>目前的 windows insider program 已經有 preview 版的 WSL2 可以使用，檔案系統速度提升有感，不過必須要是在 wsl2 的 rootfs 裡面，若存取 /mnt/ 速度反而會變慢</p>
+<p><img src="https://i.imgur.com/HBMCpFQ.png" alt></p>
+<p>可以透過 <code>\\wsl$\Ubuntu\home\</code> 或是直接在某個資料夾中執行 <code>explorer.exe .</code> 打開 windows 的 GUI 存取檔案，不得不說 windows 的 GUI 真的很棒棒</p>
+<p>大致上用起來很順，不過因為是 preview 版本，目前還有待改進的如下：</p>
+<ul>
+<li>網路存取，目前必須用動態內網 IP 存取 WSL2 裡面跑的 service <a href="https://docs.microsoft.com/en-us/windows/wsl/wsl2-ux-changes#accessing-network-applications" target="_blank" rel="noopener">Ref</a></li>
+<li>曾經多次遇到運行 wsl 無法進入 /mnt mount 的資料夾，可能是 mount windows drive 失敗，目前可以透過重開 <code>wsl --shutdown</code> 來解決</li>
+</ul>
+<h1 id="VSCODE-with-Remote-WSL"><a href="#VSCODE-with-Remote-WSL" class="headerlink" title="VSCODE with Remote WSL"></a>VSCODE with Remote WSL</h1><p>VSCODE 最新 stable 提供了 remote development 功能，原理是在遠端機器中跑一個 vscode remote server，而原本的 windows 端 VSCODE 變成主要提供 GUI 介面</p>
+<p>這真的是 windows 開發者一大福音。</p>
+<p>有許多 plugin 使用的 script engine 原本是要吃系統的，也就是說就算使用 wsl 也必須在 windows 安裝一份，同時也會遇到許多 windows 特有的 bug，使用 remote dev 把 vscode core 放進 wsl 後 extension 等會使用到額外 binary 的都可以直接跑在 linux 中</p>
+<p>另外一個原本很大的問題是 debugger 再使用 terminal 跑 nodejs debugger mode 時會跟 integrated wsl terminal 衝突，無法直接跑起來，只能用 remote attach 暫時解決</p>
+<p>支援 remote develop 後很多問題都解決了，目前還有遇到的問題像是 file list sync 有時會不靈敏等等，也比上面阻礙的問題小很多了</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/05/23/COC-Proxy/" data-id="cjx6y8af80004h3vq7i9be6gw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/06/22/Comfortable-Dev-Experence-on-Windows-With-WSL2/" data-id="cjx6y8af90005h3vqnp43dzif" class="article-share-link">Share</a>
       
-        <a href="http://yoursite.com/2015/05/23/COC-Proxy/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://yoursite.com/2019/06/22/Comfortable-Dev-Experence-on-Windows-With-WSL2/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -114,15 +119,11 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/09/12/Summer-2015/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Summer 2015
-        
-      </div>
-    </a>
   
+    <a href="/2019/06/22/Blog-Migrated/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">搬家</div>
+    </a>
   
 </nav>
 
@@ -214,7 +215,7 @@
 <script>
   var disqus_shortname = 'leepupu';
   
-  var disqus_url = 'http://yoursite.com/2015/05/23/COC-Proxy/';
+  var disqus_url = 'http://yoursite.com/2019/06/22/Comfortable-Dev-Experence-on-Windows-With-WSL2/';
   
   (function(){
     var dsq = document.createElement('script');

@@ -64,6 +64,88 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-TUM-CTF-Teaser-Reverse-10" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/10/26/TUM-CTF-Teaser-Reverse-10/" class="article-date">
+  <time datetime="2015-10-26T08:53:35.000Z" itemprop="datePublished">2015-10-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/10/26/TUM-CTF-Teaser-Reverse-10/">TUM CTF Teaser Reverse 10</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="不算太難的-Reverse-，比較像考-little-endian"><a href="#不算太難的-Reverse-，比較像考-little-endian" class="headerlink" title="不算太難的 Reverse ，比較像考 little-endian"></a>不算太難的 Reverse ，比較像考 little-endian</h2><h3 id="建立-table"><a href="#建立-table" class="headerlink" title="建立 table"></a>建立 table</h3><p>用 ida 看 發現是用 scanf %llx 讀入 64bit hex 表示的 long long int </p>
+<p>輸入的數值會先被 |= 0x8000000000000000;</p>
+<p>接著往下看是個 16 次的迴圈，是把輸入的數字每四 bits 取出當 index 加上 local 變數的地圵 找出這個位置後以 byte 為單位加一</p>
+<p>把兩個 int64 裡面的 bytes 當 array 用</p>
+<p>看 code 比較實在 XD</p>
+<figure class="figure-code code"><div class="highlight"><pre>__int64 v10; // [sp+10h] [bp-18h]@1
+  __int64 v11; // [sp+18h] [bp-10h]@1
+v10 = 0LL;
+  v11 = 0LL;
+
+<p>v4 = 0;<br>  do<br>  {<br>    v5 = 4 * v4++; //從低位址開始 4bits 4bits 取  其實就是 hex 表示數字的一個字 (0~F)<br>    ++*((_BYTE *)&amp;v10 + ((v3 &amp; (15LL &lt;&lt; v5)) &gt;&gt; v5)); // v10 是 int64 有 8ytes 但 4bits 可以表示到 15 這邊是伏筆<br>  }<br>  while ( v4 != 16 );<br></p></pre></div><p></p>
+</figure>
+
+<h3 id="check-階段"><a href="#check-階段" class="headerlink" title="check 階段"></a>check 階段</h3><p>一樣 16 次的 loop 這次變數(v6)從 0 ~ -15</p>
+<figure class="figure-code code"><div class="highlight"><pre>v6 = 0LL;
+  while ( 1 )
+  {
+    v7 = *((_BYTE *)&amp;v11 + v6 + 7); // +7 常數所以是從 v11 的最後一個 byte 往前看 看到 v10 的最低 byte 為止
+    if ( v7 ) // 若不為零 
+    {
+      if ( v7 != (_BYTE)v6 + 15 || v7 &gt; 8u )
+        break;
+    }
+    --v6;
+    if ( v6 == -15 )
+    {
+      puts(":)");
+      system("cat flag.txt");
+      return 0;
+    }
+  }
+</pre></div>
+</figure>
+
+<p>若 byte 中不為零 會以下圖中數字 check</p>
+<figure>![](http://i.imgur.com/qVekBBT.jpg)</figure>
+
+<p>整理一下 若輸入 0 =&gt; |= 0x8000000000000000 =&gt; 15 次 index offset = 0, 1次 offset 8</p>
+<p>=&gt; v10 的第一的 byte 會變成 15, v11 的第一個 byte = 1</p>
+<p>=&gt; check 時希望 v11 的第一個 byte 要是 8 =&gt; fail</p>
+<p>也就是要湊數字填 table, 為了讓 check 通過必須得數字出現的次數跟數值一樣 ex, 55555, 333, 999999999</p>
+<p>然後要 16 位( 64 bits long long int) 因為數直會先被 |= 0x8000000000000000 也就是有一位被限制要 &gt;= 8</p>
+<p>以上就是全部條件 那就來填填看 0x8888888844443331 =&gt; 通過</p>
+<p>存在多組解 符合以上條件都可以 ex 0x8888888855555333 也行</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/10/26/TUM-CTF-Teaser-Reverse-10/" data-id="cjx6y8afl000dh3vqs7sgwu0r" class="article-share-link">Share</a>
+      
+        <a href="http://yoursite.com/2015/10/26/TUM-CTF-Teaser-Reverse-10/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-ASIS-Reverse-125-License" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/10/26/ASIS-Reverse-125-License/" class="article-date">
@@ -111,7 +193,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/10/26/ASIS-Reverse-125-License/" data-id="cjx6x762700038wvqkga24w6y" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/10/26/ASIS-Reverse-125-License/" data-id="cjx6y8af60003h3vqbx4vtt0j" class="article-share-link">Share</a>
+      
+        <a href="http://yoursite.com/2015/10/26/ASIS-Reverse-125-License/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -158,7 +242,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/12/Summer-2015/" data-id="cjx6x762j000b8wvqzk4qc8rz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/12/Summer-2015/" data-id="cjx6y8afi000bh3vq7hr7j6yw" class="article-share-link">Share</a>
+      
+        <a href="http://yoursite.com/2015/09/12/Summer-2015/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -205,7 +291,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/05/23/COC-Proxy/" data-id="cjx6x762a00058wvqp4dp0rxl" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/05/23/COC-Proxy/" data-id="cjx6y8af80004h3vq7i9be6gw" class="article-share-link">Share</a>
+      
+        <a href="http://yoursite.com/2015/05/23/COC-Proxy/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -251,6 +339,10 @@
       <ul>
         
           <li>
+            <a href="/2019/06/22/Comfortable-Dev-Experence-on-Windows-With-WSL2/">在 Windows 環境中舒適的開發</a>
+          </li>
+        
+          <li>
             <a href="/2019/06/22/Blog-Migrated/">搬家</a>
           </li>
         
@@ -264,10 +356,6 @@
         
           <li>
             <a href="/2016/03/27/ADL-CTF-2015-SimpleEcho2/">ADL CTF 2015 - SimpleEcho2</a>
-          </li>
-        
-          <li>
-            <a href="/2016/02/01/CSP-CTF-pwn-40-vecho/">CSP CTF pwn 40 - vecho</a>
           </li>
         
       </ul>
@@ -298,6 +386,18 @@
   
 </nav>
     
+<script>
+  var disqus_shortname = 'leepupu';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
