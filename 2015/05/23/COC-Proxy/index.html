@@ -16,7 +16,7 @@
 <meta property="og:locale" content="zh">
 <meta property="og:image" content="http://i.imgur.com/cofbGla.png">
 <meta property="og:image" content="http://i.imgur.com/5mU6kFB.png">
-<meta property="og:updated_time" content="2019-06-24T01:42:29.790Z">
+<meta property="og:updated_time" content="2019-06-24T01:43:51.500Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="COC Proxy">
 <meta name="twitter:description" content="項目起源回鍋 COC 有好一陣子了，在 PaD 的坑結束後過一陣子乏力期，一打開 IDA 就全身酸軟。 五月初又是一陣期中報告，實習面試，雖然一直有想要拆開它的慾望，卻一直抽不出身 就在考多益的前一週突然渾身不對勁的跳坑開始著手研究 研究過程準備COC 和 Pad 不同，是走 raw socket, 這様窺探資料的難度增加了 (這年頭沒有明文傳輸了吧) 所以也不需要 wireshark，先用 ap">
@@ -107,7 +107,7 @@
 <p>返回後向上觀察下斷找到 encryption function 會針對即將送出的 stream of bytes 做等長加密</p>
 <p><img src="http://i.imgur.com/cofbGla.png" alt></p>
 <p>小菜我缺乏密碼學知識啊！看到 function 不斷從一張表中用奇怪的方法挑出 byte 跟名文加密，也不知道這張表怎麼來</p>
-<p>經過努力不借的觀察，終於發現有兩張表分別對應 send 跟 recv 而這兩張表在每次開 COC 時是固定且一樣的！！</p>
+<p>經過努力的觀察，終於發現有兩張表分別對應 send 跟 recv 而這兩張表在每次開 COC 時是固定且一樣的！！</p>
 <p>雖然心中抱有懷疑，加密的 IV 可能會固定嗎？ 但憑著不試白不試的心情將 IDA disassember 出的結果改進 python 中(非常醜)</p>
 <p><img src="http://i.imgur.com/5mU6kFB.png" alt></p>
 <p>實際實驗後(都已 global chat 測試)發現還是抓不到 仔細觀察後發現在第一次登入 packet 送出 server response 後整張加密表都變了！</p>
@@ -135,7 +135,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/05/23/COC-Proxy/" data-id="cjx6yu98w0005qvvqedisq3oc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/05/23/COC-Proxy/" data-id="cjx9pwg4p000eljvq62b3k4dm" class="article-share-link">Share</a>
       
         <a href="http://yoursite.com/2015/05/23/COC-Proxy/#disqus_thread" class="article-comment-link">Comments</a>
       
