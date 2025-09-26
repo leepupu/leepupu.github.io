@@ -13,17 +13,28 @@
     const bookmarkletCode = `javascript:(async()=>{const JS="https://cdn.jsdelivr.net/npm/video.js@8/dist/video.min.js",CSS="https://cdn.jsdelivr.net/npm/video.js@8/dist/video-js.min.css";const a=t=>new Promise((e,o)=>{const n=document.createElement("link");n.rel="stylesheet",n.href=t,n.onload=()=>e(),n.onerror=()=>o(new Error("Failed to load CSS: "+t)),document.head.appendChild(n)}),s=t=>new Promise((e,o)=>{const n=document.createElement("script");n.src=t,n.async=!0,n.onload=()=>e(),n.onerror=()=>o(new Error("Failed to load script: "+t)),document.head.appendChild(n)});try{await a(CSS),await s(JS);if(!window.videojs)throw new Error("Video.js failed to load.");const r=window.s_dp&&window.s_dp.options&&window.s_dp.options.video&&window.s_dp.options.video.url;if(!r)throw new Error("Could not find s_dp.options.video.url (m3u8).");const i=document.querySelector("#myplayer");if(!i)throw new Error("Container #myplayer not found.");if(i.__vjsPlayer&&"function"==typeof i.__vjsPlayer.dispose)try{i.__vjsPlayer.dispose()}catch{}i.innerHTML="";const d="vjs_console_player_"+Date.now(),l=document.createElement("video");l.id=d,l.className="video-js vjs-default-skin vjs-big-play-centered",l.setAttribute("controls",""),l.setAttribute("playsinline",""),l.style.width="100%",l.style.height="100%";const c=document.createElement("source");c.src=r,c.type="application/x-mpegURL",l.appendChild(c),i.appendChild(l);const p=window.videojs(l,{fluid:!0,preload:"auto",autoplay:"muted",muted:!0,liveui:!0,html5:{vhs:{withCredentials:!1}}});p.src({src:r,type:"application/x-mpegURL"}),i.__vjsPlayer=p;try{await p.play()}catch(t){console.warn("Autoplay was blocked. Click the play button to start.",t)}console.log("[Video.js] Player loaded with:",r)}catch(t){alert(t&&t.message?t.message:String(t))}})();`;
 
     document.getElementById("showLink").addEventListener("click", () => {
+      const container = document.getElementById("linkContainer");
+      container.innerHTML = "";
+
+      // Create link
       const link = document.createElement("a");
       link.href = bookmarkletCode;
-      link.textContent = "📌 Drag me to your bookmarks bar!";
+      link.textContent = "修正播放器";
       link.style.display = "inline-block";
       link.style.padding = "8px 12px";
       link.style.background = "#0077cc";
       link.style.color = "white";
       link.style.textDecoration = "none";
       link.style.borderRadius = "5px";
-      document.getElementById("linkContainer").innerHTML = "";
-      document.getElementById("linkContainer").appendChild(link);
+
+      // Create hint text
+      const hint = document.createElement("div");
+      hint.textContent = "📌 Drag me to your bookmarks bar!";
+      hint.style.marginTop = "8px";
+      hint.style.color = "#333";
+
+      container.appendChild(link);
+      container.appendChild(hint);
     });
   </script>
 </body>
